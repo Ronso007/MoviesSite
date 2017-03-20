@@ -39,7 +39,6 @@ public partial class Pages_Register : System.Web.UI.Page
             userMsg.Attributes.Add("class", "alert alert-danger");
             passwordError.Attributes.Add("class", "input-group has-error");
             confirmError.Attributes.Add("class", "input-group has-error");
-            userMsg.Attributes.Add("class", "alert alert-danger");
             if (Password != Confirm)
                 msg = "Passwords not Match! ";
             if(user2 != null)

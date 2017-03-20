@@ -17,17 +17,14 @@
             </div>
         </div>
         <div class="main-login main-center">
-            <form class="form-horizontal" method="post" action="#">
-
-
-
+            <form class="form-horizontal" method="post" runat="server">
 
                 <div class="form-group">
                     <label for="username" class="cols-sm-2 control-label">Username</label>
                     <div class="cols-sm-10">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-                            <input type="text" class="form-control" name="username" id="username" placeholder="Enter your Username" />
+                            <asp:TextBox CssClass="form-control" ID="username" runat="server" MaxLength="16" placeholder="Enter your Username"></asp:TextBox>
                         </div>
                     </div>
                 </div>
@@ -37,14 +34,17 @@
                     <div class="cols-sm-10">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                            <input type="password" class="form-control" name="password" id="password" placeholder="Enter your Password" />
+                            <asp:TextBox CssClass="form-control" ID="password" runat="server" MaxLength="16" placeholder="Enter your Password" TextMode="Password"></asp:TextBox>
                         </div>
                     </div>
                 </div>
-
-
+                <div class="text-center">
+                    <div id="userMsg" runat="server">
+                        <%=msg %>
+                    </div>
+                </div>
                 <div class="form-group ">
-                    <button type="button" class="btn btn-primary btn-lg btn-block login-button">Login</button>
+                    <asp:Button OnClick="submit_Click" CssClass="btn btn-primary btn-lg btn-block login-button" ID="submit" runat="server" Text="Login" />
                 </div>
             </form>
         </div>
