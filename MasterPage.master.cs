@@ -17,11 +17,11 @@ public partial class MasterPage : System.Web.UI.MasterPage
         }
         if((string)Session["User"] == "none")
         {
-            navbar = "<a href='Register.aspx'><span class='glyphicon glyphicon-plus'></span> Register</a>";
+            navbar = "<li><a href='Register.aspx'><span class='glyphicon glyphicon-plus'></span> Register</a></li><li><a href = 'Login.aspx' ><span class='glyphicon glyphicon-log-in'></span> Login</a></li>";
         }
         else
         {
-            navbar = "<a>Hello " + (string)Session["User"] + "!</a>";
+            navbar = "<li><a>Hello " + (string)Session["User"] + "!</a></li><li><a href='Logout.aspx'><span class='glyphicon glyphicon-log-out'></span> Logout</a></li>";
         }
     }
 }

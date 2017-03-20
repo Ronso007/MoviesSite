@@ -62,7 +62,7 @@
                 <div class="form-group">
                     <label for="password" class="cols-sm-2 control-label">Password</label>
                     <div class="cols-sm-10">
-                        <div class="input-group">
+                        <div class="input-group" id="passwordError" runat="server">
                             <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
                             <asp:TextBox CssClass="form-control" ID="password" runat="server" MaxLength="16" placeholder="Enter your Password" TextMode="Password"></asp:TextBox>
                         </div>
@@ -72,13 +72,17 @@
                 <div class="form-group">
                     <label for="confirm" class="cols-sm-2 control-label">Confirm Password</label>
                     <div class="cols-sm-10">
-                        <div class="input-group">
+                        <div class="input-group" id="confirmError" runat="server">
                             <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
                             <asp:TextBox CssClass="form-control" ID="confirm" runat="server" MaxLength="16" placeholder="Enter your Password" TextMode="Password"></asp:TextBox>
                         </div>
                     </div>
                 </div>
-
+                <div class="text-center">
+                    <div id="userMsg" runat="server">
+                        <%=msg %>
+                    </div>
+                </div>
                 <div class="form-group ">
                     <asp:Button OnClick="submit_Click" CssClass="btn btn-primary btn-lg btn-block login-button" ID="submit" runat="server" Text="Register" />
                 </div>

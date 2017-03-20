@@ -11,65 +11,47 @@ using System.Data.SqlClient;
 
 public partial class Pages_Register : System.Web.UI.Page
 {
-    string connectionString = Connect.getConnectionString();
-    OleDbParameter objParam;
-
+    public string msg ="";
     protected void Page_Load(object sender, EventArgs e)
     {
-    
+        if((string)Session["User"] != "none")
+        {
+            Response.Redirect("Home.aspx");
+        }
     }
-
 
     protected void submit_Click(object sender, EventArgs e)
     {
-        OleDbConnection myConn = new OleDbConnection(connectionString);
         string Name = name.Text;
         string Email = email.Text;
         string Username = username.Text;
         DateTime Date = Convert.ToDateTime(birthday.Text);
         string Password = password.Text;
         string Confirm = confirm.Text;
-        //DateTime date = Convert.ToDateTime(Request.Form["birthday"]);
 
-        OleDbCommand myCmd = new OleDbCommand("UserInsInto", myConn);
-        myCmd.CommandType = CommandType.StoredProcedure;
-
-        objParam = myCmd.Parameters.Add("@username", OleDbType.BSTR);
-        objParam.Direction = ParameterDirection.Input;
-        objParam.Value = Username;
-
-        objParam = myCmd.Parameters.Add("@name", OleDbType.BSTR);
-        objParam.Direction = ParameterDirection.Input;
-        objParam.Value = Name;
-
-        objParam = myCmd.Parameters.Add("@email", OleDbType.BSTR);
-        objParam.Direction = ParameterDirection.Input;
-        objParam.Value = Email;
-
-        objParam = myCmd.Parameters.Add("@password", OleDbType.BSTR);
-        objParam.Direction = ParameterDirection.Input;
-        objParam.Value = Password;
-
-        objParam = myCmd.Parameters.Add("@birthday", OleDbType.DBDate);
-        objParam.Direction = ParameterDirection.Input;
-        objParam.Value = Date;
-
-
-        try
+        if (Password != Confirm)
         {
-            myConn.Open();
-            myCmd.ExecuteNonQuery();
+            userMsg.Attributes.Add("class", "alert alert-danger");
+            passwordError.Attributes.Add("class", "input-group has-error");
+            confirmError.Attributes.Add("class", "input-group has-error");
+            userMsg.Attributes.Add("class", "alert alert-danger");
+            msg = "Passwords not Match!";
+        }
+        else
+        {
+            userMsg.Attributes.Add("class", "alert alert-success");
+            msg = "Success!";
+            UserDetails user = new UserDetails();
+            user.Name = Name;
+            user.Email = Email;
+            user.Username = Username;
+            user.Birthday = Date;
+            user.Password = Password;
+
+            UserService userService = new UserService();
+            userService.InserUser(user);
+
             Session["User"] = Name;
         }
-        catch (Exception ex)
-        {
-            throw ex;
-        }
-        finally
-        {
-            myConn.Close();
-        }
-
-        Session["User"] = Name;
     }
 }
