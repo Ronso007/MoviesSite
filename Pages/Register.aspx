@@ -17,14 +17,14 @@
             </div>
         </div>
         <div class="main-login main-center">
-            <form class="form-horizontal" method="post" action="#">
+            <form class="form-horizontal" method="post" runat="server">
 
                 <div class="form-group">
                     <label for="name" class="cols-sm-2 control-label">Your Name</label>
                     <div class="cols-sm-10">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                            <input type="text" class="form-control" name="name" id="name" placeholder="Enter your Name" />
+                            <asp:TextBox CssClass="form-control" ID="name" runat="server" MaxLength="16" placeholder="Enter your Name"></asp:TextBox>
                         </div>
                     </div>
                 </div>
@@ -34,7 +34,7 @@
                     <div class="cols-sm-10">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-                            <input type="text" class="form-control" name="email" id="email" placeholder="Enter your Email" />
+                            <asp:TextBox CssClass="form-control" ID="email" runat="server" MaxLength="25" placeholder="Enter your Email"></asp:TextBox>
                         </div>
                     </div>
                 </div>
@@ -44,7 +44,7 @@
                     <div class="cols-sm-10">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-                            <input type="text" class="form-control" name="username" id="username" placeholder="Enter your Username" />
+                            <asp:TextBox CssClass="form-control" ID="username" runat="server" MaxLength="16" placeholder="Enter your Username"></asp:TextBox>
                         </div>
                     </div>
                 </div>
@@ -64,7 +64,7 @@
                     <div class="cols-sm-10">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                            <input type="password" class="form-control" name="password" id="password" placeholder="Enter your Password" />
+                            <asp:TextBox CssClass="form-control" ID="password" runat="server" MaxLength="16" placeholder="Enter your Password"></asp:TextBox>
                         </div>
                     </div>
                 </div>
@@ -74,13 +74,13 @@
                     <div class="cols-sm-10">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                            <input type="password" class="form-control" name="confirm" id="confirm" placeholder="Confirm your Password" />
+                            <asp:TextBox CssClass="form-control" ID="confirm" runat="server" MaxLength="16" placeholder="Enter your Password"></asp:TextBox>
                         </div>
                     </div>
                 </div>
 
                 <div class="form-group ">
-                    <button type="button" class="btn btn-primary btn-lg btn-block login-button">Register</button>
+                    <asp:Button OnClick="submit_Click" CssClass="btn btn-primary btn-lg btn-block login-button" ID="submit" runat="server" Text="Register" />
                 </div>
             </form>
         </div>
