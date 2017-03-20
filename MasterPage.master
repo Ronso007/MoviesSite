@@ -10,6 +10,8 @@
 
     <link href="Scripts/bootstrap/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <title>
         <asp:ContentPlaceHolder ID="title" runat="server"></asp:ContentPlaceHolder>
@@ -62,7 +64,7 @@
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="Register.aspx"><span class="glyphicon glyphicon-plus"></span> Register</a></li>
+                    <li><%=navbar %></li>
                     <li><a href="Login.aspx"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                 </ul>
             </div>
@@ -83,8 +85,6 @@
             <p>Made By Ron Soffer</p>
         </footer>
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </body>
 </html>

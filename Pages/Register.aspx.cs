@@ -59,6 +59,7 @@ public partial class Pages_Register : System.Web.UI.Page
         {
             myConn.Open();
             myCmd.ExecuteNonQuery();
+            Session["User"] = Name;
         }
         catch (Exception ex)
         {
@@ -69,6 +70,6 @@ public partial class Pages_Register : System.Web.UI.Page
             myConn.Close();
         }
 
-
+        Session["User"] = Name;
     }
 }
