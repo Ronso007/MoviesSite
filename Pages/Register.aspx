@@ -54,7 +54,7 @@
                     <div class="cols-sm-10">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-birthday-cake fa" aria-hidden="true"></i></span>
-                            <input type="date" class="form-control" name="birthday" id="birthday" />
+                            <asp:TextBox CssClass="form-control" ID="birthday" runat="server" TextMode="Date"></asp:TextBox>
                         </div>
                     </div>
                 </div>
@@ -64,7 +64,7 @@
                     <div class="cols-sm-10">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                            <asp:TextBox CssClass="form-control" ID="password" runat="server" MaxLength="16" placeholder="Enter your Password"></asp:TextBox>
+                            <asp:TextBox CssClass="form-control" ID="password" runat="server" MaxLength="16" placeholder="Enter your Password" TextMode="Password"></asp:TextBox>
                         </div>
                     </div>
                 </div>
@@ -74,7 +74,7 @@
                     <div class="cols-sm-10">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                            <asp:TextBox CssClass="form-control" ID="confirm" runat="server" MaxLength="16" placeholder="Enter your Password"></asp:TextBox>
+                            <asp:TextBox CssClass="form-control" ID="confirm" runat="server" MaxLength="16" placeholder="Enter your Password" TextMode="Password"></asp:TextBox>
                         </div>
                     </div>
                 </div>

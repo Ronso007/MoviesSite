@@ -12,6 +12,7 @@ using System.Data.SqlClient;
 public partial class Pages_Register : System.Web.UI.Page
 {
     string connectionString = Connect.getConnectionString();
+    OleDbParameter objParam;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -25,13 +26,35 @@ public partial class Pages_Register : System.Web.UI.Page
         string Name = name.Text;
         string Email = email.Text;
         string Username = username.Text;
+        DateTime Date = Convert.ToDateTime(birthday.Text);
         string Password = password.Text;
         string Confirm = confirm.Text;
-        DateTime date = Convert.ToDateTime(Request.Form["birthday"]);
+        //DateTime date = Convert.ToDateTime(Request.Form["birthday"]);
 
-        string sql = "INSERT INTO Users(Username,Name,Email,Password,Birthdate) VALUES('" + Username + "','" + Name + "','" + Email + "','" + Password + "'," + date + ")";
-        OleDbCommand myCmd = new OleDbCommand(sql, myConn);
-        
+        OleDbCommand myCmd = new OleDbCommand("InsertUser", myConn);
+        myCmd.CommandType = CommandType.StoredProcedure;
+
+        objParam = myCmd.Parameters.Add("@username", OleDbType.BSTR);
+        objParam.Direction = ParameterDirection.Input;
+        objParam.Value = Username;
+
+        objParam = myCmd.Parameters.Add("@name", OleDbType.BSTR);
+        objParam.Direction = ParameterDirection.Input;
+        objParam.Value = Name;
+
+        objParam = myCmd.Parameters.Add("@email", OleDbType.BSTR);
+        objParam.Direction = ParameterDirection.Input;
+        objParam.Value = Email;
+
+        objParam = myCmd.Parameters.Add("@password", OleDbType.BSTR);
+        objParam.Direction = ParameterDirection.Input;
+        objParam.Value = Password;
+
+        objParam = myCmd.Parameters.Add("@birthday", OleDbType.Date);
+        objParam.Direction = ParameterDirection.Input;
+        objParam.Value = Date;
+
+
         try
         {
             myConn.Open();
@@ -45,7 +68,6 @@ public partial class Pages_Register : System.Web.UI.Page
         {
             myConn.Close();
         }
-
 
 
     }
