@@ -31,7 +31,7 @@ public partial class Pages_Register : System.Web.UI.Page
         string Confirm = confirm.Text;
         //DateTime date = Convert.ToDateTime(Request.Form["birthday"]);
 
-        OleDbCommand myCmd = new OleDbCommand("InsertUser", myConn);
+        OleDbCommand myCmd = new OleDbCommand("UserInsInto", myConn);
         myCmd.CommandType = CommandType.StoredProcedure;
 
         objParam = myCmd.Parameters.Add("@username", OleDbType.BSTR);
@@ -50,7 +50,7 @@ public partial class Pages_Register : System.Web.UI.Page
         objParam.Direction = ParameterDirection.Input;
         objParam.Value = Password;
 
-        objParam = myCmd.Parameters.Add("@birthday", OleDbType.Date);
+        objParam = myCmd.Parameters.Add("@birthday", OleDbType.DBDate);
         objParam.Direction = ParameterDirection.Input;
         objParam.Value = Date;
 
