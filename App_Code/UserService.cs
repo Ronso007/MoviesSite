@@ -66,4 +66,45 @@ public class UserService
 
     }
 
+    public UserDetails GetUser(string username)
+    {
+        UserDetails user = new UserDetails();
+        OleDbCommand myCmd = new OleDbCommand("GetUserByID", myConn);
+        myCmd.CommandType = CommandType.StoredProcedure;
+
+        objParam = myCmd.Parameters.Add("@username", OleDbType.BSTR);
+        objParam.Direction = ParameterDirection.Input;
+        objParam.Value = username;
+
+        try
+        {
+            myConn.Open();
+            OleDbDataReader DataReader = myCmd.ExecuteReader();
+
+
+            user.Username = username;
+
+            if (DataReader.Read())
+            {
+                user.Name = DataReader["Name"].ToString();
+                user.Email = DataReader["Email"].ToString();
+                user.Password = DataReader["Password"].ToString();
+                user.Birthday = (DateTime)DataReader["Birthdate"];
+            }
+            else
+            {
+                user = null;
+            }
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        finally
+        {
+            myConn.Close();
+        }
+        return user;
+    }
+
 }

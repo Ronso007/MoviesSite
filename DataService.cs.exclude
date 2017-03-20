@@ -1,0 +1,94 @@
+﻿using System;
+using System.Data;
+using System.Configuration;
+using System.Linq;
+using System.Web;
+using System.Web.Security;
+using System.Web.UI;
+using System.Web.UI.HtmlControls;
+using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
+using System.Xml.Linq;
+using System.Data.OleDb;
+
+/// <summary>
+/// Summary description for DataService
+/// </summary>
+public class DataService
+{
+    protected OleDbConnection Conn;
+    OleDbParameter objParam;
+    OleDbDataAdapter adapter, adapterWords;
+    public DataService()
+    {
+        Conn = new OleDbConnection(Connect.getConnectionString());
+
+        OleDbCommand myCmd = new OleDbCommand("GetAllWordKind", Conn);
+        myCmd.CommandType = CommandType.StoredProcedure;
+        adapter = new OleDbDataAdapter();
+        adapter.SelectCommand = myCmd;
+
+        OleDbCommand myCmd2 = new OleDbCommand("GetAllWordName", Conn);
+        myCmd2.CommandType = CommandType.StoredProcedure;
+        adapterWords = new OleDbDataAdapter();
+        adapterWords.SelectCommand = myCmd2;
+    }
+    public DataSet GetSubjectsAndWords()
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            Conn.Open();
+            adapter.Fill(ds, "WordKind");
+            adapterWords.Fill(ds, "WordName");
+
+            ds.Tables["WordKind"].PrimaryKey = new DataColumn[] { ds.Tables["WordKind"].Columns["codeItem"] };
+            ds.Tables["WordName"].PrimaryKey = new DataColumn[] { ds.Tables["WordName"].Columns["Code"] };
+            CreateRelation(ds);
+        }
+        catch(Exception ex)
+        { throw ex; }
+        finally
+        {
+            Conn.Close();
+        }
+        return ds;
+    }
+    private void CreateRelation(DataSet ds)
+    {
+        DataColumn parentCol;
+        DataColumn childCol;
+
+        parentCol = ds.Tables["WordKind"].Columns["codeItem"];
+        childCol = ds.Tables["WordName"].Columns["CodeItem"];
+
+        DataRelation rel;
+        rel = new DataRelation("KindWord", parentCol, childCol);
+        ds.Relations.Add(rel);
+    }
+    public void AddKindDS(string sug,DataSet ds)
+    {
+
+        DataRow newrow = ds.Tables["WordKind"].NewRow();
+        newrow[0] = GetLast(ds) + 1;
+        newrow[1] = sug;
+        ds.Tables["WordKind"].Rows.Add(newrow);
+
+    }
+    private int GetLast(DataSet ds)
+    {
+        int lastrow = ds.Tables["WordKind"].Rows.Count;
+        while (ds.Tables["WordKind"].Rows[lastrow - 1].RowState == DataRowState.Deleted)
+            lastrow--;
+        return lastrow;
+    }
+    public void UpdateKind(string kod,string sug,DataSet ds)
+    {
+        ds.Tables["WordKind"].Rows[Convert.ToInt32(kod)][1] = sug;
+    }
+    public void DeleteKind(string kod,DataSet ds)
+    {
+        ds.Tables["WordKind"].Rows[Convert.ToInt32(kod)].Delete();
+    }
+
+}
