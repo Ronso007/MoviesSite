@@ -50,6 +50,16 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="username" class="cols-sm-2 control-label">Birthdate</label>
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-birthday-cake fa" aria-hidden="true"></i></span>
+                            <input type="date" class="form-control" name="birthday" id="birthday" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
                     <label for="password" class="cols-sm-2 control-label">Password</label>
                     <div class="cols-sm-10">
                         <div class="input-group">
