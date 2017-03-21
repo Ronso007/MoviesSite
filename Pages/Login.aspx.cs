@@ -28,9 +28,13 @@ public partial class Pages_Login : System.Web.UI.Page
 
         if(user.Password == Password)
         {
-            userMsg.Attributes.Add("class", "alert alert-success");
-            msg = "Success!";
             Session["User"] = user.Name;
+            Session["Username"] = user.Username;
+            Session["Admin"] = user.Admin;
+            Response.Redirect("Home.aspx");
+            /*userMsg.Attributes.Add("class", "alert alert-success");
+            msg = "Success!";
+            Session["User"] = user.Name;*/
         }
         else //Wrong Password
         {

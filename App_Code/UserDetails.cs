@@ -13,6 +13,7 @@ public class UserDetails
     private string email;
     private string password;
     private DateTime birthday;
+    private bool admin;
 
     public UserDetails()
     {
@@ -80,6 +81,19 @@ public class UserDetails
         set
         {
             birthday = value;
+        }
+    }
+
+    public bool Admin
+    {
+        get
+        {
+            return admin;
+        }
+
+        set
+        {
+            admin = value;
         }
     }
 }

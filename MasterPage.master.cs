@@ -21,7 +21,22 @@ public partial class MasterPage : System.Web.UI.MasterPage
         }
         else
         {
-            navbar = "<li><a>Hello " + (string)Session["User"] + "!</a></li><li><a href='Logout.aspx'><span class='glyphicon glyphicon-log-out'></span> Logout</a></li>";
+            if (!(bool)Session["Admin"])
+            {
+                navbar = "<li><a>Hello " + (string)Session["User"] + "!</a></li>";
+                navbar += "<li><a href='Profile.aspx'><span class='glyphicon glyphicon-user'></span> Profile</a></li>";
+                navbar += "<li><a href='Logout.aspx' ><span class='glyphicon glyphicon-log-out'></span> Logout</a></li>";
+
+
+            }
+            else
+            {
+                navbar = "<li><a>Hello " + (string)Session["User"] + "!</a></li>";
+                navbar += "<li><a href='Profile.aspx'><span class='glyphicon glyphicon-user'></span> Profile</a></li>";
+                navbar += "<li><a href='Controlpanel.aspx'><span class='glyphicon glyphicon-edit'></span> Control Panel</a></li>";
+                navbar += "<li><a href='Logout.aspx' ><span class='glyphicon glyphicon-log-out'></span> Logout</a></li>";
+            }
+                
         }
     }
 }

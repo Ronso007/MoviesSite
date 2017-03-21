@@ -58,6 +58,7 @@ public partial class Pages_Register : System.Web.UI.Page
             userService.InserUser(user);
 
             Session["User"] = Name;
+            Session["Username"] = Username;
         }
     }
 }

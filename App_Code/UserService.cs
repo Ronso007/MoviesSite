@@ -90,6 +90,7 @@ public class UserService
                 user.Email = DataReader["Email"].ToString();
                 user.Password = DataReader["Password"].ToString();
                 user.Birthday = (DateTime)DataReader["Birthdate"];
+                user.Admin = (bool)DataReader["Admin"];
             }
             else
             {
@@ -107,4 +108,59 @@ public class UserService
         return user;
     }
 
+    public void UpdateUser(UserDetails userD,bool admin)
+    {
+        string Username = userD.Username;
+        string Name = userD.Name;
+        string Email = userD.Email;
+        string Password = userD.Password;
+        DateTime Date = userD.Birthday;
+
+        OleDbCommand myCmd = new OleDbCommand("UpdateUser", myConn);
+        myCmd.CommandType = CommandType.StoredProcedure;
+
+        objParam = myCmd.Parameters.Add("@username", OleDbType.BSTR);
+        objParam.Direction = ParameterDirection.Input;
+        objParam.Value = Username;
+
+        objParam = myCmd.Parameters.Add("@name", OleDbType.BSTR);
+        objParam.Direction = ParameterDirection.Input;
+        objParam.Value = Name;
+
+        objParam = myCmd.Parameters.Add("@email", OleDbType.BSTR);
+        objParam.Direction = ParameterDirection.Input;
+        objParam.Value = Email;
+
+        objParam = myCmd.Parameters.Add("@password", OleDbType.BSTR);
+        objParam.Direction = ParameterDirection.Input;
+        objParam.Value = Password;
+
+        objParam = myCmd.Parameters.Add("@birthday", OleDbType.DBDate);
+        objParam.Direction = ParameterDirection.Input;
+        objParam.Value = Date;
+
+        objParam = myCmd.Parameters.Add("@admin", OleDbType.Boolean);
+        objParam.Direction = ParameterDirection.Input;
+        objParam.Value = admin;
+
+        objParam = myCmd.Parameters.Add("@user", OleDbType.BSTR);
+        objParam.Direction = ParameterDirection.Input;
+        objParam.Value = Username;
+
+        try
+        {
+            myConn.Open();
+            myCmd.ExecuteNonQuery();
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        finally
+        {
+            myConn.Close();
+        }
+
+
+    }
 }
