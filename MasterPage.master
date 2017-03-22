@@ -57,20 +57,25 @@
                         <ul class="dropdown-menu">
                             <li><a href="#">Directors</a></li>
                             <li><a href="#">Actors</a></li>
-                            <li><a href="#">Genre</a></li>
+                            <%=navbarLeft %>
                             <li role="separator" class="divider"></li>
                             <li><a href="#"><span class="glyphicon glyphicon-search"></span> Search Movies</a></li>
                         </ul>
                     </li>
                 </ul>
+                <form class="navbar-form navbar-left">
+                    <div class="form-group">
+                        <input type="text" placeholder="Search Movies" class="form-control">
+                    </div>
+                    <button type="submit" class="btn"><span class="glyphicon glyphicon-search"></span></button>
+                </form>
                 <ul class="nav navbar-nav navbar-right">
 
-                    <%=navbar %>
+                    <%=navbarRight %>
                 </ul>
             </div>
         </div>
     </nav>
-
     <div class="container">
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
         </asp:ContentPlaceHolder>

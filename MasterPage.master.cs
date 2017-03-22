@@ -7,7 +7,8 @@ using System.Web.UI.WebControls;
 
 public partial class MasterPage : System.Web.UI.MasterPage
 {
-    public string navbar;
+    public string navbarRight;
+    public string navbarLeft ="";
     
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -17,24 +18,25 @@ public partial class MasterPage : System.Web.UI.MasterPage
         }
         if((string)Session["User"] == "none")
         {
-            navbar = "<li><a href='Register.aspx'><span class='glyphicon glyphicon-plus'></span> Register</a></li><li><a href = 'Login.aspx' ><span class='glyphicon glyphicon-log-in'></span> Login</a></li>";
+            navbarRight = "<li><a href='Register.aspx'><span class='glyphicon glyphicon-plus'></span> Register</a></li><li><a href = 'Login.aspx' ><span class='glyphicon glyphicon-log-in'></span> Login</a></li>";
         }
         else
         {
+            navbarLeft= "<li><a href='AddMovie.aspx'><span class='glyphicon glyphicon-plus'></span> Add Movie</a></li>";
             if (!(bool)Session["Admin"])
             {
-                navbar = "<li><a>Hello " + (string)Session["User"] + "!</a></li>";
-                navbar += "<li><a href='Profile.aspx'><span class='glyphicon glyphicon-user'></span> Profile</a></li>";
-                navbar += "<li><a href='Logout.aspx' ><span class='glyphicon glyphicon-log-out'></span> Logout</a></li>";
+                navbarRight = "<li><a>Hello " + (string)Session["User"] + "!</a></li>";
+                navbarRight += "<li><a href='Profile.aspx'><span class='glyphicon glyphicon-user'></span> Profile</a></li>";
+                navbarRight += "<li><a href='Logout.aspx' ><span class='glyphicon glyphicon-log-out'></span> Logout</a></li>";
 
 
             }
             else
             {
-                navbar = "<li><a>Hello " + (string)Session["User"] + "!</a></li>";
-                navbar += "<li><a href='Profile.aspx'><span class='glyphicon glyphicon-user'></span> Profile</a></li>";
-                navbar += "<li><a href='Controlpanel.aspx'><span class='glyphicon glyphicon-edit'></span> Control Panel</a></li>";
-                navbar += "<li><a href='Logout.aspx' ><span class='glyphicon glyphicon-log-out'></span> Logout</a></li>";
+                navbarRight = "<li><a>Hello " + (string)Session["User"] + "!</a></li>";
+                navbarRight += "<li><a href='Profile.aspx'><span class='glyphicon glyphicon-user'></span> Profile</a></li>";
+                navbarRight += "<li><a href='Controlpanel.aspx'><span class='glyphicon glyphicon-edit'></span> Panel</a></li>";
+                navbarRight += "<li><a href='Logout.aspx' ><span class='glyphicon glyphicon-log-out'></span> Logout</a></li>";
             }
                 
         }

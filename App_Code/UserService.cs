@@ -69,7 +69,7 @@ public class UserService
     public UserDetails GetUser(string username)
     {
         UserDetails user = new UserDetails();
-        OleDbCommand myCmd = new OleDbCommand("GetUserByID", myConn);
+        OleDbCommand myCmd = new OleDbCommand("GetUserByUsername", myConn);
         myCmd.CommandType = CommandType.StoredProcedure;
 
         objParam = myCmd.Parameters.Add("@username", OleDbType.BSTR);
