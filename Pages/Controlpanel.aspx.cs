@@ -9,6 +9,8 @@ public partial class Pages_Controlpanel : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["Admin"] == null)
+            Response.Redirect("Home.aspx");
         if (!(bool)Session["Admin"])
             Response.Redirect("Home.aspx");
     }

@@ -163,4 +163,27 @@ public class UserService
 
 
     }
+
+    public DataSet GetUsers()
+    {
+        OleDbCommand myCmd = new OleDbCommand("GetAllUsers", myConn);
+        myCmd.CommandType = CommandType.StoredProcedure;
+
+        OleDbDataAdapter adapter = new OleDbDataAdapter();
+        adapter.SelectCommand = myCmd;
+
+        DataSet UsersTable = new DataSet();
+
+        try
+        {
+            adapter.Fill(UsersTable, "Users");
+            UsersTable.Tables["Users"].PrimaryKey = new DataColumn[] { UsersTable.Tables["Users"].Columns["Username"] };
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return UsersTable;
+    }
+
 }
