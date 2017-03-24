@@ -8,24 +8,10 @@ using System.Web;
 /// </summary>
 public class MoviesDetails
 {
-    private int movieID;
     private string movieName;
     private string movieGenre;
     private string director;
     private DateTime releaseDate;
-
-    public int MovieID
-    {
-        get
-        {
-            return movieID;
-        }
-
-        set
-        {
-            movieID = value;
-        }
-    }
 
     public string MovieName
     {

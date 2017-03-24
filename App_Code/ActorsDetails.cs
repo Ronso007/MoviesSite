@@ -6,11 +6,11 @@ using System.Web;
 /// <summary>
 /// Summary description for Actors
 /// </summary>
-public class Actors
+public class ActorsDetails
 {
         private string name;
 
-    public Actors(string Name)
+    public ActorsDetails(string Name)
     {
         name = Name;
     }
