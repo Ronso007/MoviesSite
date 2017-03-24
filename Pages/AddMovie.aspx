@@ -24,7 +24,7 @@
                     <div class="cols-sm-10">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-film" aria-hidden="true"></i></span>
-                            <asp:TextBox CssClass="form-control" ID="movieName" runat="server" MaxLength="16" placeholder="Enter Movie Name"></asp:TextBox>
+                            <asp:TextBox CssClass="form-control" ID="movieName" runat="server" MaxLength="20" placeholder="Enter Movie Name"></asp:TextBox>
                         </div>
                     </div>
                 </div>
@@ -34,7 +34,17 @@
                     <div class="cols-sm-10">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-bars fa" aria-hidden="true"></i></span>
-                            <asp:TextBox CssClass="form-control" ID="genre" runat="server" MaxLength="25" placeholder="Enter genre"></asp:TextBox>
+                            <asp:DropDownList CssClass="form-control" ID="genres" runat="server">
+                                <asp:ListItem Selected="True">Action</asp:ListItem>
+                                <asp:ListItem>Adventure</asp:ListItem>
+                                <asp:ListItem>Animation</asp:ListItem>
+                                <asp:ListItem>Comedy</asp:ListItem>
+                                <asp:ListItem>Documentary</asp:ListItem>
+                                <asp:ListItem>Drama</asp:ListItem>
+                                <asp:ListItem>Horror</asp:ListItem>
+                                <asp:ListItem>Romance</asp:ListItem>
+                                <asp:ListItem>Sci-Fi</asp:ListItem>
+                            </asp:DropDownList>
                         </div>
                     </div>
                 </div>
@@ -44,7 +54,7 @@
                     <div class="cols-sm-10">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-forward" aria-hidden="true"></i></span>
-                            <asp:TextBox CssClass="form-control" ID="director" runat="server" MaxLength="16" placeholder="Enter Director Name"></asp:TextBox>
+                            <asp:TextBox CssClass="form-control" ID="director" runat="server" MaxLength="20" placeholder="Enter Director Name"></asp:TextBox>
                         </div>
                     </div>
                 </div>
@@ -59,13 +69,23 @@
                     </div>
                 </div>
 
+                <div class="form-group">
+                    <label for="username" class="cols-sm-2 control-label">Actors (Put ',' between Actors)</label>
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+                            <asp:TextBox CssClass="form-control" ID="actors" runat="server" TextMode="MultiLine"></asp:TextBox>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="text-center">
                     <div id="userMsg" runat="server">
                         <%=msg %>
                     </div>
                 </div>
                 <div class="form-group ">
-                    <asp:Button CssClass="btn btn-primary btn-lg btn-block login-button" ID="submit" runat="server" Text="Add Movie" />
+                    <asp:Button OnClick="submit_Click" CssClass="btn btn-primary btn-lg btn-block login-button" ID="submit" runat="server" Text="Add Movie" />
                 </div>
             </form>
         </div>
