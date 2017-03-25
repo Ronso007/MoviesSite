@@ -135,7 +135,7 @@ public class MoviesService
 
     }
 
-    public DataSet GetActors()
+    public DataSet GetAllMovies()
     {
         OleDbCommand myCmd = new OleDbCommand("GetAllMovies", myConn);
         myCmd.CommandType = CommandType.StoredProcedure;

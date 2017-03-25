@@ -10,18 +10,34 @@
         <div class=" jumbotron">
             <h3>Here you can see all the movies</h3>
         </div>
-    <asp:GridView CssClass="table-striped table table-hover" ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1">
+    <asp:GridView CssClass="table-striped table table-hover" ID="GridViewMovies" runat="server" AutoGenerateColumns="False">
         <Columns>
-            <asp:BoundField DataField="MovieName" HeaderText="MovieName" SortExpression="MovieName" />
-            <asp:BoundField DataField="Director" HeaderText="Director" SortExpression="Director" />
-            <asp:BoundField DataField="MovieGenre" HeaderText="MovieGenre" SortExpression="MovieGenre" />
-            <asp:BoundField DataField="ReleaseDate" HeaderText="ReleaseDate" SortExpression="ReleaseDate" />
+            <asp:TemplateField HeaderText="Movie Name">
+                <ItemTemplate>
+                    <asp:Label ID="Label1" runat="server" Text='<%# Bind("MovieName") %>'></asp:Label>
+                </ItemTemplate>
+            </asp:TemplateField>
+            <asp:TemplateField HeaderText="Genre">
+                <ItemTemplate>
+                    <asp:Label ID="Label3" runat="server" Text='<%# Bind("MovieGenre") %>'></asp:Label>
+                </ItemTemplate>
+            </asp:TemplateField>
+            <asp:TemplateField HeaderText="Director">
+                <ItemTemplate>
+                    <asp:Label ID="Label4" runat="server" Text='<%# Bind("Director") %>'></asp:Label>
+                </ItemTemplate>
+            </asp:TemplateField>
+            <asp:TemplateField HeaderText="Date Of Release">
+                <ItemTemplate>
+                    <asp:Label ID="Label2" runat="server" Text='<%# Eval("ReleaseDate","{0:d MMM yyyy}") %>'></asp:Label>
+                </ItemTemplate>
+            </asp:TemplateField>
         </Columns>
-        </asp:GridView>
 
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\MoviesSiteDB.mdb;Persist Security Info=True" ProviderName="System.Data.OleDb" SelectCommand="SELECT [MovieName], [Director], [MovieGenre], [ReleaseDate] FROM [Movies]"></asp:SqlDataSource>
 
-        <br />
+
+
+    </asp:GridView>
     </form>
 </asp:Content>
 

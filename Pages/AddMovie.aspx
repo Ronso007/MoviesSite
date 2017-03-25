@@ -24,7 +24,7 @@
                     <div class="cols-sm-10">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-film" aria-hidden="true"></i></span>
-                            <asp:TextBox CssClass="form-control" ID="movieName" runat="server" MaxLength="20" placeholder="Enter Movie Name"></asp:TextBox>
+                            <asp:TextBox CssClass="form-control" ID="movieName" runat="server" MaxLength="30" placeholder="Enter Movie Name"></asp:TextBox>
                         </div>
                     </div>
                 </div>
@@ -54,7 +54,7 @@
                     <div class="cols-sm-10">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-forward" aria-hidden="true"></i></span>
-                            <asp:TextBox CssClass="form-control" ID="director" runat="server" MaxLength="20" placeholder="Enter Director Name"></asp:TextBox>
+                            <asp:TextBox CssClass="form-control" ID="director" runat="server" MaxLength="30" placeholder="Enter Director Name"></asp:TextBox>
                         </div>
                     </div>
                 </div>
@@ -73,7 +73,7 @@
                     <label for="username" class="cols-sm-2 control-label">Actors (Put ',' between Actors)</label>
                     <div class="cols-sm-10">
                         <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+                            <span class="input-group+-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
                             <asp:TextBox CssClass="form-control" ID="actors" runat="server" TextMode="MultiLine"></asp:TextBox>
                         </div>
                     </div>
