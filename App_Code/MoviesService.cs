@@ -19,28 +19,44 @@ public class MoviesService
     public void InsertMovie(MoviesDetails movie)
     {
         string Name = movie.MovieName;
-        string Genre = movie.MovieGenre;
         string Director = movie.Director;
-        DateTime ReleaseDate = movie.ReleaseDate;
+        string Genre = movie.MovieGenre;
+        string Description = movie.Description;
+        int Duration = movie.Duration;
+        string Image = movie.ImgURL;
+        string Trailer = movie.TrailerURL;
 
-        OleDbCommand myCmd = new OleDbCommand("MovieInsInto", myConn);
+    OleDbCommand myCmd = new OleDbCommand("MovieInsInto", myConn);
         myCmd.CommandType = CommandType.StoredProcedure;
 
         objParam = myCmd.Parameters.Add("@movieName", OleDbType.BSTR);
         objParam.Direction = ParameterDirection.Input;
         objParam.Value = Name;
 
-        objParam = myCmd.Parameters.Add("@movieGenre", OleDbType.BSTR);
-        objParam.Direction = ParameterDirection.Input;
-        objParam.Value = Genre;
-
         objParam = myCmd.Parameters.Add("@director", OleDbType.BSTR);
         objParam.Direction = ParameterDirection.Input;
         objParam.Value = Director;
 
-        objParam = myCmd.Parameters.Add("@birthday", OleDbType.DBDate);
+        objParam = myCmd.Parameters.Add("@movieGenre", OleDbType.BSTR);
         objParam.Direction = ParameterDirection.Input;
-        objParam.Value = ReleaseDate;
+        objParam.Value = Genre;
+
+        objParam = myCmd.Parameters.Add("@description", OleDbType.BSTR);
+        objParam.Direction = ParameterDirection.Input;
+        objParam.Value = Description;
+
+        objParam = myCmd.Parameters.Add("@duration", OleDbType.Integer);
+        objParam.Direction = ParameterDirection.Input;
+        objParam.Value = Duration;
+
+        objParam = myCmd.Parameters.Add("@Image", OleDbType.BSTR);
+        objParam.Direction = ParameterDirection.Input;
+        objParam.Value = Image;
+
+        objParam = myCmd.Parameters.Add("@trailer", OleDbType.BSTR);
+        objParam.Direction = ParameterDirection.Input;
+        objParam.Value = Trailer;
+
 
         try
         {
@@ -115,7 +131,7 @@ public class MoviesService
                 movie.MovieName = (string)DataReader["MovieName"];
                 movie.MovieGenre = (string)DataReader["MovieGenre"];
                 movie.Director = (string)DataReader["Director"];
-                movie.ReleaseDate = (DateTime)DataReader["ReleaseDate"];
+//movie.ReleaseDate = (DateTime)DataReader["ReleaseDate"];
 
             }
             else

@@ -1,0 +1,167 @@
+﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="GamesBoard.aspx.cs" Inherits="GamesBoard" Title="Untitled Page" %>
+
+<script runat="server">
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+
+    }
+</script>
+
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+
+    <style type="text/css">
+
+        .style6
+        {
+            width: 145px;
+            height: 78px;
+        }
+        .style8
+        {
+            height: 22px;
+        }
+        .style9
+        {
+            height: 26px;
+        }
+
+.button {
+    background-color: #444444; /* Green */
+    border: none;
+    color: white;
+    padding: 10px 18px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 2px 1px;
+    cursor: pointer;
+}
+    </style>
+
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+
+    <table style="width: 100%;">
+        <tr align="center">
+            <td>
+                &nbsp;
+            </td>
+            <td>
+                &nbsp;
+                <table style="width:100%;">
+                    <tr>
+                        <td class="style9">
+                            </td>
+                        <td align="center" class="style9">
+                            <asp:Label ID="LabelGameNameText" runat="server" Text="Game name:"></asp:Label>
+                            <asp:TextBox ID="TextBoxGameNme" runat="server" Width="185px" BorderStyle="Solid" BorderColor="#444444" ></asp:TextBox>
+                            <asp:Button CssClass="button" ID="ButtonGameName" runat="server" Text="Search" 
+                                onclick="ButtonGameName_Click" />
+                        </td>
+                        <td class="style9">
+                            </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            &nbsp;</td>
+                        <td align="center">
+                            <asp:ObjectDataSource ID="ObjectDataSourceDataListCategories" runat="server" 
+                                SelectMethod="GetAllCategories" TypeName="WebServiceGames.WebServiceGames">
+                            </asp:ObjectDataSource>
+                            <asp:Button CssClass="button" ID="ButtonResetGameDataList" runat="server" 
+                                onclick="ButtonResetGameDataList_Click" Text="Reset filters" />
+                            <asp:DataList ID="DataListCategories" runat="server" RepeatColumns="4" CellSpacing="10" 
+                                DataSourceID="ObjectDataSourceDataListCategories" 
+                                onitemcommand="DataListCategories_ItemCommand">
+                                <ItemTemplate>
+                                    <table style="width:100%;">
+                                        <tr>
+                                            <td align="center">
+                                                <asp:ImageButton ID="ImageButtonCategory" runat="server" CommandName="Category" 
+                                                    ImageUrl='<%# Bind("categoryPicture") %>' />
+                                                <asp:Label ID="LabelCategoryCode" runat="server" 
+                                                    Text='<%# Bind("categoryCode") %>' Visible="False"></asp:Label>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                            <td align="center">
+                                                <asp:Label ID="LabelCategoryName" runat="server" 
+                                                    Text='<%# Bind("categoryName") %>'></asp:Label>
+                                            </td>
+
+                                        </tr>
+
+                                    </table>
+                                </ItemTemplate>
+                            </asp:DataList>
+                        </td>
+                        <td>
+                            &nbsp;</td>
+                    </tr>
+                </table>
+            </td>
+            <td>
+                &nbsp;
+            </td>
+        </tr>
+        <tr align="center">
+            <td>
+                &nbsp;
+            </td>
+            <td>
+                &nbsp;
+                <asp:DataList ID="DataListGames" runat="server" GridLines="Vertical" 
+                    RepeatColumns="5" style="margin-bottom: 0px; margin-left: 0px;" ShowFooter="False" 
+                    ShowHeader="False" OnItemCommand="DataListGames_ItemCommand" BorderColor="White">
+                    <ItemStyle Font-Bold="False" Font-Italic="False" Font-Overline="False" 
+                        Font-Strikeout="False" Font-Underline="False"/>
+                    <ItemTemplate>
+                        <asp:Label ID="LabelGameCodeText" runat="server" style="font-size:12px" 
+                            Text="Game code:"></asp:Label>
+                    <asp:Label style="font-size:12px" ID="LabelGameCode" runat="server" text='<%# Bind("gameCode") %>'></asp:Label>
+                    <br />
+                        <asp:Image ID="GameImage" runat="server" 
+                            ImageUrl='<%# Bind("gamePicture") %>' />
+                        <br />
+                        <table style="width:100%;">
+                            <tr>
+                                <td class="style6">
+                                    <asp:Label Width="220px" ID="LabelGameName" runat="server" Text='<%# Bind("gameName") %>'></asp:Label>
+                                    <br />
+                                    <asp:Label ID="LabelGamePriceTest" runat="server" Text="Starting from:"></asp:Label>
+                                    <asp:Label ID="LabelGamePrice" runat="server" Text='<%# Bind("lowestPrice") %>'></asp:Label>
+                                    &nbsp;points<br />
+                                    <asp:Label style="font-size:12px" ID="LabelGameInfo" runat="server" Text='<%# Bind("gameInfo") %>'></asp:Label>
+                                    <br />
+                                    <asp:Label ID="LabelAmountOfSalesText" runat="server" Text="Amount of sales:"></asp:Label>
+                                    <asp:Label ID="LabelGameAmountSales" runat="server" 
+                                        Text='<%# Bind("amountOfSales") %>'></asp:Label>
+                                </td>
+                                
+                                    
+                            </tr>
+                            
+                            <tr align="center">
+                                <td class="style8">
+                                    <asp:Button CssClass="button" ID="ButtonGamePage" runat="server" Text="More details" 
+                                        CommandName="Details" />
+                                </td>
+                            
+                            </tr>
+
+                        </table>
+                    </ItemTemplate>
+                </asp:DataList>
+            </td>
+            <td>
+                &nbsp;
+            </td>
+        </tr>
+    </table>
+
+</asp:Content>
+

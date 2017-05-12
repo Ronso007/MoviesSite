@@ -26,15 +26,22 @@ public partial class Pages_AddMovie : System.Web.UI.Page
         ActorsService actorService = new ActorsService();
 
         string MovieName = movieName.Text;
-        string Genre = genres.SelectedValue;
         string Director = director.Text;
-        DateTime ReleaseDate = Convert.ToDateTime(release.Text);
+        string Genre = genres.SelectedValue;
+        string Description = description.Text;
         string actorsList = actors.Text;
+        int Duration = int.Parse(duration.Text);
+        string Image = image.Text;
+        string Trailer = trailer.Text;
 
         movie.MovieName = MovieName;
-        movie.MovieGenre = Genre;
         movie.Director = Director;
-        movie.ReleaseDate = ReleaseDate;
+        movie.MovieGenre = Genre;
+        movie.Description = Description;
+        movie.Duration = Duration;
+        movie.ImgURL = Image;
+        movie.TrailerURL = Trailer;
+
         movieService.InsertMovie(movie);
 
         string[] arrActorString = actorsList.Split(','); //Split Actors By ','
@@ -44,8 +51,10 @@ public partial class Pages_AddMovie : System.Web.UI.Page
             arrActors[i] = new ActorsDetails(arrActorString[i]);
             arrActors[i].Name.Trim();
 
-            actorService.InsertActor(arrActors[i]); 
-
+            if (actorService.GetIDbyName(arrActors[i].Name) != -1)
+            {
+                actorService.InsertActor(arrActors[i]);
+            }
         }
 
         int movieID = movieService.GetIDbyName(movie.MovieName);

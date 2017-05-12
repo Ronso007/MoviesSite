@@ -1,0 +1,123 @@
+﻿using System;
+using System.Collections;
+using System.Configuration;
+using System.Data;
+using System.Linq;
+using System.Web;
+using System.Web.Security;
+using System.Web.UI;
+using System.Web.UI.HtmlControls;
+using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
+using System.Xml.Linq;
+
+public partial class GamesBoard : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (Page.IsPostBack == false)
+        {
+            GetDataToGamesDataView();
+            PopulateGamesDataView();
+        }
+
+    }
+    public void GetDataToGamesDataView()
+    {
+        DataSet Games = new DataSet();
+
+        GameAdsService gameAdsService = new GameAdsService();
+        int[] gameCodes = gameAdsService.GetGameCodesOfPurchaseableGames();//קבלת הקודים של המשחקים הניתנים למכירה
+
+        DataSet gameAds = gameAdsService.GetAllGameAds();
+        WebServiceGames.WebServiceGames webServiceGames = new WebServiceGames.WebServiceGames(); //עצם המאפשר ליצור קשר עם המסד נתונים החיצוני
+        DataSet gamesWebService = webServiceGames.GetAllGames();
+        Games = gamesWebService.Clone();
+
+        for (int i = 0; i < gameCodes.Length; i++)//הוספת המשחקים הניתנים למכירה לדטה סט חדש
+        {
+            DataRow[] TempGame = gamesWebService.Tables[0].Select("gameCode=" + gameCodes[i]);
+            Games.Tables[0].ImportRow(TempGame[0]);
+        }
+        Games.Tables[0].Columns.Add("lowestPrice", typeof(System.Int64));//הוספת עמודה המחיר הנמוך ביותר למשחק
+        for (int i = 0; i < gameCodes.Length; i++)//הוספת ערכים לתכונת המחיר הנמוך ביותר לפי טבלת המודעות למכירה
+        {
+            int gameCode = int.Parse(Games.Tables[0].Rows[i]["gameCode"].ToString());//קוד המשחק שאליו נוסיף את הערך של המחיר הנמוך ביותר 
+            DataRow[] ads = gameAds.Tables[0].Select("gameCode=" + gameCode);
+            int lowestPrice = GetLowestPrice(ads);
+            Games.Tables[0].Rows[i]["lowestPrice"] = lowestPrice;
+        }
+        DataListGames.RepeatColumns = 5;
+        Session["sellAbleGames"] = Games.Copy();
+    }
+    public void PopulateGamesDataView()
+    {
+        DataListGames.DataSource = (DataSet)Session["sellAbleGames"];
+        DataListGames.DataBind();
+    }
+
+    public int GetLowestPrice(DataRow[] ads)
+    {
+        int minPrice = 999999;
+        for (int i = 0; i < ads.Count(); i++)
+        {
+            if (int.Parse(ads[i]["price"].ToString()) < minPrice)
+                minPrice = int.Parse(ads[i]["price"].ToString());
+        }
+        return minPrice;
+    }
+
+    protected void DataListCategories_ItemCommand(object source, DataListCommandEventArgs e)
+    {
+        if (e.CommandName == "Category")
+        {
+            GetDataToGamesDataView();
+            PopulateGamesDataView();
+            Label test = ((Label)(e.Item.FindControl("LabelCategoryCode")));
+            int categoryCode = int.Parse(test.Text);
+
+            DataSet dataSetGamesDataList = (DataSet)Session["sellAbleGames"];
+            dataSetGamesDataList.Tables[0].DefaultView.RowFilter = "categoryCode="+categoryCode;
+            DataSet SortedGames = new DataSet();//דטה סט חדש שבו יהיו המשחקים ממוינים לפי מספר מכירות
+            SortedGames.Tables.Add(dataSetGamesDataList.Tables[0].DefaultView.ToTable());
+            Session["sellAbleGames"] = SortedGames.Copy();
+            if (SortedGames.Tables[0].Rows.Count < 5)
+                DataListGames.RepeatColumns = SortedGames.Tables[0].Rows.Count;
+            PopulateGamesDataView();
+
+        }
+    }
+    protected void ButtonGameName_Click(object sender, EventArgs e)
+    {
+        if (this.TextBoxGameNme.Text != "")
+        {
+            GetDataToGamesDataView();
+            PopulateGamesDataView();
+            DataSet dataSetGamesDataList = (DataSet)Session["sellAbleGames"];
+            dataSetGamesDataList.Tables[0].DefaultView.RowFilter = "gameName LIKE '*"+this.TextBoxGameNme.Text+"*'";
+            DataSet SelectedGame = new DataSet();//דטה סט חדש שבו יהיו המשחקים ממוינים לפי מספר מכירות
+            SelectedGame.Tables.Add(dataSetGamesDataList.Tables[0].DefaultView.ToTable());
+            Session["sellAbleGames"] = SelectedGame.Copy();
+            if (SelectedGame.Tables[0].Rows.Count < 5)
+                DataListGames.RepeatColumns = SelectedGame.Tables[0].Rows.Count;
+            PopulateGamesDataView();
+        }
+    }
+    protected void ButtonResetGameDataList_Click(object sender, EventArgs e)
+    {
+        GetDataToGamesDataView();
+        PopulateGamesDataView();
+    }
+
+
+
+
+    protected void DataListGames_ItemCommand(object source, DataListCommandEventArgs e)
+    {
+        if (e.CommandName == "Details")
+        {
+            Response.Redirect("GamePage.aspx?gameCode=" + int.Parse(((Label)(e.Item.FindControl("LabelGameCode"))).Text));
+
+        }
+    }
+}

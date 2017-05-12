@@ -9,9 +9,12 @@ using System.Web;
 public class MoviesDetails
 {
     private string movieName;
-    private string movieGenre;
     private string director;
-    private DateTime releaseDate;
+    private string movieGenre;
+    private string description;
+    private int duration;
+    private string imgURL;
+    private string trailerURL;
 
     public string MovieName
     {
@@ -23,19 +26,6 @@ public class MoviesDetails
         set
         {
             movieName = value;
-        }
-    }
-
-    public string MovieGenre
-    {
-        get
-        {
-            return movieGenre;
-        }
-
-        set
-        {
-            movieGenre = value;
         }
     }
 
@@ -52,16 +42,69 @@ public class MoviesDetails
         }
     }
 
-    public DateTime ReleaseDate
+    public string MovieGenre
     {
         get
         {
-            return releaseDate;
+            return movieGenre;
         }
 
         set
         {
-            releaseDate = value;
+            movieGenre = value;
         }
     }
+
+    public string Description
+    {
+        get
+        {
+            return description;
+        }
+
+        set
+        {
+            description = value;
+        }
+    }
+
+    public int Duration
+    {
+        get
+        {
+            return duration;
+        }
+
+        set
+        {
+            duration = value;
+        }
+    }
+
+    public string ImgURL
+    {
+        get
+        {
+            return imgURL;
+        }
+
+        set
+        {
+            imgURL = value;
+        }
+    }
+
+    public string TrailerURL
+    {
+        get
+        {
+            return trailerURL;
+        }
+
+        set
+        {
+            trailerURL = value;
+        }
+    }
+
 }
