@@ -152,7 +152,7 @@ public class ActorsService
         {
             myConn.Open();
 
-            adapter.Fill(Actors, "Movies");
+            adapter.Fill(Actors, "Actors");
             Actors.Tables["Actors"].PrimaryKey = new DataColumn[] { Actors.Tables["Actors"].Columns["ActorName"] };
         }
         catch (Exception ex)

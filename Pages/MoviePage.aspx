@@ -19,6 +19,7 @@
             <b>Director:</b><asp:Label ID="Director" runat="server" Text="Label1"></asp:Label>
                         <br />
             <b>Genre:</b><asp:Label ID="Genre" runat="server" Text="Label"></asp:Label>
+            <br />
             <b>Duration:</b><asp:Label ID="Duration" runat="server" Text="Label2"></asp:Label> minutes
                         <br />
             <b>Actors:</b><asp:Label ID="Actors" runat="server" Text="Label3"></asp:Label>

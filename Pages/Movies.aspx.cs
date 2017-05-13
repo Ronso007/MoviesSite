@@ -27,6 +27,9 @@ public partial class Pages_Movies : System.Web.UI.Page
         DataSet Movies = new DataSet();
 
         MoviesServiceReference.MoviesWebServiceSoap test = new MoviesServiceReference.MoviesWebServiceSoapClient();
+        //Movies = test.GetAllMovies().Clone();
+
+        //Movies.Tables["Movies"].Columns.Add();
         return test.GetAllMovies();
     }
     private void PopulateGrid()

@@ -9,6 +9,7 @@ public partial class Pages_MoviePage : System.Web.UI.Page
 {
     string movieName;
     public string VideoSource;
+    string[] actors;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -16,8 +17,10 @@ public partial class Pages_MoviePage : System.Web.UI.Page
         if (!Page.IsPostBack)
         {
             MoviesService movieService = new MoviesService();
+            ActorsService actorService = new ActorsService();
+
             int id = movieService.GetIDbyName(movieName);
-            
+            actors = actorService.ActorsInMovie(id);
             PopulatePage(movieService.GetMovieByID(id));
 
         }
@@ -32,5 +35,13 @@ public partial class Pages_MoviePage : System.Web.UI.Page
         Duration.Text = movie.Duration.ToString();
         Description.Text = movie.Description;
         VideoSource = movie.TrailerURL;
+        Actors.Text = "";
+        for (int i = 0; i < actors.Length; i++)
+        {
+            if (i != actors.Length - 1)
+                Actors.Text += actors[i] + ", ";
+            else
+                Actors.Text += actors[i];
+        }
     }
 }
