@@ -134,4 +134,40 @@ public class ActorsService
         return ActorsTable;
     }
 
+    public string[] ActorsInMovie(int movieID)
+    {
+        DataSet Actors = new DataSet();
+        OleDbCommand myCmd = new OleDbCommand("GetActorsInMovie", myConn);
+        myCmd.CommandType = CommandType.StoredProcedure;
+
+        objParam = myCmd.Parameters.Add("@movieID", OleDbType.BSTR);
+        objParam.Direction = ParameterDirection.Input;
+        objParam.Value = movieID;
+
+        OleDbDataAdapter adapter = new OleDbDataAdapter();
+        adapter.SelectCommand = myCmd;
+
+
+        try
+        {
+            myConn.Open();
+
+            adapter.Fill(Actors, "Movies");
+            Actors.Tables["Actors"].PrimaryKey = new DataColumn[] { Actors.Tables["Actors"].Columns["ActorName"] };
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        finally
+        {
+            myConn.Close();
+        }
+        string[] actorArr = new string[Actors.Tables["Actors"].Rows.Count];
+        for (int i = 0; i < Actors.Tables["Actors"].Rows.Count; i++)
+        {
+            actorArr[i] = Actors.Tables["Actors"].Rows[i][0].ToString();
+        }
+        return actorArr;
+    }
 }

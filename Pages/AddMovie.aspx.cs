@@ -30,7 +30,7 @@ public partial class Pages_AddMovie : System.Web.UI.Page
         string Genre = genres.SelectedValue;
         string Description = description.Text;
         string actorsList = actors.Text;
-        int Duration = int.Parse(duration.Text);
+        string Duration = duration.Text;
         string Image = image.Text;
         string Trailer = trailer.Text;
 

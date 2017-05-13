@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Services;
-
+using System.Data;
 /// <summary>
 /// Summary description for MoviesWebService
 /// </summary>
@@ -11,7 +11,6 @@ using System.Web.Services;
 [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
 // To allow this Web Service to be called from script, using ASP.NET AJAX, uncomment the following line. 
 // [System.Web.Script.Services.ScriptService]
-
 public class MoviesWebService : System.Web.Services.WebService
 {
 
@@ -23,14 +22,11 @@ public class MoviesWebService : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public string HelloWorld()
+    public DataSet GetAllMovies()
     {
-        return "Hello World";
+        MoviesService mov = new MoviesService();
+        return mov.GetAllMovies();
     }
-    [WebMethod]
-    public int Add(int a,int b)
-    {
-        return a + b;
-    }
+
 
 }

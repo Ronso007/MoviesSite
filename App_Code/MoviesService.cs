@@ -22,7 +22,7 @@ public class MoviesService
         string Director = movie.Director;
         string Genre = movie.MovieGenre;
         string Description = movie.Description;
-        int Duration = movie.Duration;
+        string Duration = movie.Duration;
         string Image = movie.ImgURL;
         string Trailer = movie.TrailerURL;
 
@@ -45,7 +45,7 @@ public class MoviesService
         objParam.Direction = ParameterDirection.Input;
         objParam.Value = Description;
 
-        objParam = myCmd.Parameters.Add("@duration", OleDbType.Integer);
+        objParam = myCmd.Parameters.Add("@duration", OleDbType.BSTR);
         objParam.Direction = ParameterDirection.Input;
         objParam.Value = Duration;
 
@@ -129,9 +129,12 @@ public class MoviesService
             if (DataReader.Read())
             {
                 movie.MovieName = (string)DataReader["MovieName"];
-                movie.MovieGenre = (string)DataReader["MovieGenre"];
                 movie.Director = (string)DataReader["Director"];
-//movie.ReleaseDate = (DateTime)DataReader["ReleaseDate"];
+                movie.MovieGenre = (string)DataReader["MovieGenre"];
+                movie.Description = (string)DataReader["Description"];
+                movie.Duration = (string)DataReader["Duration"];
+                movie.ImgURL = (string)DataReader["image"];
+                movie.TrailerURL = (string)DataReader["Trailer"];
 
             }
             else

@@ -12,7 +12,7 @@ public class MoviesDetails
     private string director;
     private string movieGenre;
     private string description;
-    private int duration;
+    private string duration;
     private string imgURL;
     private string trailerURL;
 
@@ -68,7 +68,7 @@ public class MoviesDetails
         }
     }
 
-    public int Duration
+    public string Duration
     {
         get
         {
