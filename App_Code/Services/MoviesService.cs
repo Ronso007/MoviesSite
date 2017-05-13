@@ -176,35 +176,5 @@ public class MoviesService
         return MoviesTable;
     }
 
-    public void UserRateMovie(string username,int movieID,int rating)
-    {
-        OleDbCommand myCmd = new OleDbCommand("InsertRatingOfUser", myConn);
-        myCmd.CommandType = CommandType.StoredProcedure;
 
-        objParam = myCmd.Parameters.Add("@username", OleDbType.BSTR);
-        objParam.Direction = ParameterDirection.Input;
-        objParam.Value = username;
-
-        objParam = myCmd.Parameters.Add("@movieID", OleDbType.BSTR);
-        objParam.Direction = ParameterDirection.Input;
-        objParam.Value = movieID;
-
-        objParam = myCmd.Parameters.Add("@movieID", OleDbType.BSTR);
-        objParam.Direction = ParameterDirection.Input;
-        objParam.Value = rating;
-
-        try
-        {
-            myConn.Open();
-            myCmd.ExecuteNonQuery();
-        }
-        catch (Exception ex)
-        {
-            throw ex;
-        }
-        finally
-        {
-            myConn.Close();
-        }
-    }
 }
