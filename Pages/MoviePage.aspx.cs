@@ -11,6 +11,8 @@ public partial class Pages_MoviePage : System.Web.UI.Page
     public string VideoSource;
     string[] actors;
 
+    public string RateMovie;
+
     protected void Page_Load(object sender, EventArgs e)
     {
         movieName = Request.QueryString["getMovieName"].ToString(); //קבלת קוד המשחק דרך GET 
@@ -43,5 +45,7 @@ public partial class Pages_MoviePage : System.Web.UI.Page
             else
                 Actors.Text += actors[i];
         }
+
+
     }
 }

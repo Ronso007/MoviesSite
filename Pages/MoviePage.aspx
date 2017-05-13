@@ -30,6 +30,14 @@
             <iframe width="540" height="405" src="<%=VideoSource %>"></iframe>
             </div>
         </div>
+
+        <br />
+        <br />
+        <br />
+        Rate This Movie:
+        <label for="input-1" class="control-label">Rate This</label>
+<input id="input-1" name="input-1" class="rating rating-loading" data-min="0" data-max="5" data-step="1">
+
     </div>
 
 </asp:Content>
