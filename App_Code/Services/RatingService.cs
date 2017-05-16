@@ -177,4 +177,30 @@ public class RatingService
             myConn.Close();
         }
     }
+
+    public DataSet GetAllRatingOfMovie(int movieID)
+    {
+        OleDbCommand myCmd = new OleDbCommand("GetAllRatingOfMovie", myConn);
+        myCmd.CommandType = CommandType.StoredProcedure;
+
+        objParam = myCmd.Parameters.Add("@movieID", OleDbType.Integer);
+        objParam.Direction = ParameterDirection.Input;
+        objParam.Value = movieID;
+        
+        OleDbDataAdapter adapter = new OleDbDataAdapter();
+        adapter.SelectCommand = myCmd;
+
+        DataSet RatingTable = new DataSet();
+
+        try
+        {
+            adapter.Fill(RatingTable, "Rating");
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return RatingTable;
+    }
+
 }

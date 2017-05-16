@@ -1,10 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections;
+using System.Configuration;
+using System.Data;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
-
+using System.Web.UI.WebControls.WebParts;
+using System.Xml.Linq;
+using System.Web.Services;
 public partial class Pages_MoviePage : System.Web.UI.Page
 {
     string movieName;
@@ -12,6 +18,7 @@ public partial class Pages_MoviePage : System.Web.UI.Page
     string[] actors;
     int movieID;
     public string RatingMsg = "";
+    public string Reviews = "";
     protected void Page_Load(object sender, EventArgs e)
     {
 
@@ -73,7 +80,28 @@ public partial class Pages_MoviePage : System.Web.UI.Page
                 Actors.Text += actors[i];
         }
 
+        DataSet reviews = new DataSet();
+        RatingService ratingService = new RatingService();
+        reviews = ratingService.GetAllRatingOfMovie(movieID);
 
+        Reviews += "<tr>";
+        Reviews += "<th>User</th>";
+        Reviews += "<th>Date</th>";
+        Reviews += "<th>Rating</th>";
+        Reviews += "<th>Review</th>";
+
+        Reviews += "</tr>";
+
+        for (int i = 0; i < reviews.Tables["Rating"].Rows.Count; i++)
+        {
+            Reviews += "<tr>";
+            Reviews += "<td>" + reviews.Tables["Rating"].Rows[i][0].ToString() + "</td>";
+            Reviews += "<td>" + reviews.Tables[0].Rows[i][3].ToString() + "</td>";
+            Reviews += "<td>" + reviews.Tables[0].Rows[i][2].ToString() + "</td>";
+            Reviews += "<td>" + reviews.Tables[0].Rows[i][4].ToString() + "</td>";
+
+            Reviews += "</tr>";
+        }
     }
 
     protected void rating1_Click(object sender, EventArgs e)

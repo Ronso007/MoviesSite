@@ -51,6 +51,10 @@
             <asp:Button ID="rating5" CssClass="btn btn-info" runat="server" Text="5" OnClick="rating5_Click" />
             <br />
         </form>
+        <br />
+        <table class="table-striped table table-hover">
+        <%=Reviews %>
+        </table>
     </div>
 
 </asp:Content>

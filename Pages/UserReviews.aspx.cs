@@ -28,7 +28,7 @@ public partial class Pages_UserReviews : System.Web.UI.Page
 
         RatingService ratingService = new RatingService();
          reviews = ratingService.GetAllReviewsOfUser((string)Session["Username"]);
-        //reviews = ratingService.GetAllRating();
+        //reviews = ratingService.GetAllRatingOfMovie(44);
         return reviews;
     }
   /*  private DataSet GetData()
