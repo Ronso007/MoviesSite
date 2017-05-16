@@ -115,7 +115,6 @@ public class RatingService
 
     public DataSet GetAllReviewsOfUser(string username)
     {
-        bool Found;
         OleDbCommand myCmd = new OleDbCommand("GetAllReviewsOfUser", myConn);
         myCmd.CommandType = CommandType.StoredProcedure;
 
@@ -131,6 +130,7 @@ public class RatingService
         try
         {
             adapter.Fill(RatingTable, "Rating");
+            RatingTable.Tables["Rating"].PrimaryKey = new DataColumn[] { RatingTable.Tables["Rating"].Columns["MovieName"] };
         }
         catch (Exception ex)
         {

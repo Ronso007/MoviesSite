@@ -6,13 +6,21 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <form id="form1" runat="server">
+    <form runat="server">
         <div class=" jumbotron">
             <h3>Here you can edit User Details
             </h3>
         </div>
-        <asp:GridView ID="GridViewReviews" runat="server" DataSourceID="SqlDataSource1"></asp:GridView>
-    </form>
-
+        asd
+        <asp:GridView ID="GridViewReviews" runat="server" AutoGenerateColumns="False">
+            <Columns>
+                <asp:BoundField DataField="Bind(&quot;MovieName&quot;)" HeaderText="Movie Name" />
+                <asp:BoundField  DataField="RatingDate" HeaderText="Date" />
+                <asp:BoundField DataField="Rating" HeaderText="Rate" />
+                <asp:BoundField DataField="Review" HeaderText="Review" />
+            </Columns>
+        </asp:GridView>
+    asd
+        </form>
 </asp:Content>
 
