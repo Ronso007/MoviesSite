@@ -11,16 +11,17 @@
             <h3>Here you can edit User Details
             </h3>
         </div>
-        asd
-        <asp:GridView ID="GridViewReviews" runat="server" AutoGenerateColumns="False">
+        
+        <asp:GridView CssClass="table-striped table table-hover" ID="GridViewReviews" runat="server" AutoGenerateColumns="False" OnRowCancelingEdit="GridViewReviews_RowCancelingEdit" OnRowEditing="GridViewReviews_RowEditing" OnRowUpdating="GridViewReviews_RowUpdating">
             <Columns>
-                <asp:BoundField DataField="Bind(&quot;MovieName&quot;)" HeaderText="Movie Name" />
-                <asp:BoundField  DataField="RatingDate" HeaderText="Date" />
-                <asp:BoundField DataField="Rating" HeaderText="Rate" />
+                <asp:BoundField DataField="MovieName" HeaderText="Movie Name" ReadOnly="True" />
+                <asp:BoundField DataField="RatingDate" HeaderText="Date" ReadOnly="True" />
+                <asp:BoundField DataField="Rating" HeaderText="Rating" />
                 <asp:BoundField DataField="Review" HeaderText="Review" />
+                <asp:CommandField ShowEditButton="True" />
             </Columns>
         </asp:GridView>
-    asd
+    
         </form>
 </asp:Content>
 

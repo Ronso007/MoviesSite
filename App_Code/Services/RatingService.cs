@@ -71,8 +71,8 @@ public class RatingService
         try
         {
             adapter.Fill(RatingTable, "Rating");
-            RatingTable.Tables["Rating"].PrimaryKey = new DataColumn[] { RatingTable.Tables["Rating"].Columns["Username"] };
-            RatingTable.Tables["Rating"].PrimaryKey = new DataColumn[] { RatingTable.Tables["Rating"].Columns["MovieID"] };
+           // RatingTable.Tables["Rating"].PrimaryKey = new DataColumn[] { RatingTable.Tables["Rating"].Columns["Username"] };
+           // RatingTable.Tables["Rating"].PrimaryKey = new DataColumn[] { RatingTable.Tables["Rating"].Columns["MovieID"] };
         }
         catch (Exception ex)
         {
@@ -143,4 +143,38 @@ public class RatingService
         return RatingTable;
     }
 
+    public void UpdateRating(string username,int movieID,int Rating,string Review )
+    {
+        OleDbCommand myCmd = new OleDbCommand("UpdateRatingRow", myConn);
+        myCmd.CommandType = CommandType.StoredProcedure;
+
+        objParam = myCmd.Parameters.Add("@rating", OleDbType.Integer);
+        objParam.Direction = ParameterDirection.Input;
+        objParam.Value = Rating;
+
+        objParam = myCmd.Parameters.Add("@review", OleDbType.BSTR);
+        objParam.Direction = ParameterDirection.Input;
+        objParam.Value = Review;
+
+        objParam = myCmd.Parameters.Add("@username", OleDbType.BSTR);
+        objParam.Direction = ParameterDirection.Input;
+        objParam.Value = username;
+
+        objParam = myCmd.Parameters.Add("@movieID", OleDbType.Integer);
+        objParam.Direction = ParameterDirection.Input;
+        objParam.Value = movieID;
+        try
+        {
+            myConn.Open();
+            myCmd.ExecuteNonQuery();
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        finally
+        {
+            myConn.Close();
+        }
+    }
 }

@@ -22,12 +22,61 @@ public partial class Pages_UserReviews : System.Web.UI.Page
         }
     }
 
+    private DataSet GetData()
+    {
+        DataSet reviews = new DataSet();
+
+        RatingService ratingService = new RatingService();
+         reviews = ratingService.GetAllReviewsOfUser((string)Session["Username"]);
+        //reviews = ratingService.GetAllRating();
+        return reviews;
+    }
+  /*  private DataSet GetData()
+    {
+        DataSet Movies = new DataSet();
+
+        // WebServiceMovies123.MoviesWebService test = new WebServiceMovies123.MoviesWebService();
+        MoviesService movies = new MoviesService();
+        return movies.GetAllMovies();
+    }*/
     private void PopulateGrid()
     {
-        RatingService ratingService = new RatingService();
-        DataSet reviews = ratingService.GetAllReviewsOfUser((string)Session["Username"]);
-
-        GridViewReviews.DataSource = reviews;
+        GridViewReviews.DataSource = GetData();
         GridViewReviews.DataBind();
+    }
+
+
+    protected void GridViewReviews_RowEditing(object sender, GridViewEditEventArgs e)
+    {
+        GridViewReviews.EditIndex = e.NewEditIndex;
+        PopulateGrid();
+    }
+
+    protected void GridViewReviews_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+    {
+        GridViewReviews.EditIndex = -1;
+        PopulateGrid();
+    }
+
+    protected void GridViewReviews_RowUpdating(object sender, GridViewUpdateEventArgs e)
+    {
+        RatingService ratingService = new RatingService();
+        MoviesService movies = new MoviesService();
+        try
+        {
+            string username = (string)Session["Username"];
+            int movieID = movies.GetIDbyName(GridViewReviews.Rows[e.RowIndex].Cells[0].Text);
+            int rating = int.Parse(((TextBox)(GridViewReviews.Rows[e.RowIndex].Cells[2].Controls[0])).Text);
+            string review = ((TextBox)(GridViewReviews.Rows[e.RowIndex].Cells[3].Controls[0])).Text;
+
+            ratingService.UpdateRating(username, movieID, rating, review);
+            GridViewReviews.EditIndex = -1;
+            PopulateGrid();
+        }
+        catch(Exception ex)
+        {
+            throw ex;
+        }
+        
     }
 }
