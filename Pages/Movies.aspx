@@ -20,7 +20,7 @@
                         <br />
                         Genre:<asp:Label ID="Genre" runat="server" Font-Bold="true" Text='<%# Bind("MovieGenre") %>'></asp:Label>
                         &nbsp;<br />Duration:<asp:Label ID="Duration" Font-Bold="true" runat="server" Text='<%# Bind("Duration") %>'></asp:Label>
-                        &nbsp;min<br />
+                        &nbsp;min<br />   
                         <asp:Button ID="MovieButton" runat="server" Text="More Details" CommandName="Details" />
                     </ItemTemplate>
                 </asp:DataList>

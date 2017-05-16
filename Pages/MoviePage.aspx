@@ -4,6 +4,8 @@
     Movie
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="Server">
+    <link href="../Scripts/css/star-rating.css" rel="stylesheet" />
+    <script src="../Scripts/js/star-rating.js"></script>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <div class="jumbotron">
@@ -34,10 +36,15 @@
         <br />
         <br />
         <br />
-        Rate This Movie:
-        <label for="input-1" class="control-label">Rate This</label>
-<input id="input-1" name="input-1" class="rating rating-loading" data-min="0" data-max="5" data-step="1">
-
+        <%=RatingMsg %>
+        <form runat="server" class="text-center" id="rating">
+            <label class="active">Rate This Movie:</label>
+            <asp:Button ID="rating1" CssClass="btn btn-info" runat="server" Text="1" OnClick="rating1_Click" />
+            <asp:Button ID="rating2" CssClass="btn btn-info" runat="server" Text="2" OnClick="rating2_Click" />
+            <asp:Button ID="rating3" CssClass="btn btn-info" runat="server" Text="3" OnClick="rating3_Click" />
+            <asp:Button ID="rating4" CssClass="btn btn-info" runat="server" Text="4" OnClick="rating4_Click" />
+            <asp:Button ID="rating5" CssClass="btn btn-info" runat="server" Text="5" OnClick="rating5_Click" />
+        </form>
     </div>
 
 </asp:Content>

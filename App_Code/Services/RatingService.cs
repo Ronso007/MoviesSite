@@ -75,6 +75,7 @@ public class RatingService
 
     public bool DidRateAlready(string username,int movieID)
     {
+        bool Found;
         OleDbCommand myCmd = new OleDbCommand("GetRatingOfUser", myConn);
         myCmd.CommandType = CommandType.StoredProcedure;
 
@@ -91,8 +92,7 @@ public class RatingService
         {
             myConn.Open();
             OleDbDataReader DataReader = myCmd.ExecuteReader();
-            string userName = (string)DataReader["Username"].ToString();
-
+            Found = DataReader.HasRows;
         }
         catch (Exception ex)
         {
@@ -102,7 +102,7 @@ public class RatingService
         {
             myConn.Close();
         }
-        return username != null;
-
+        //return username != null;
+        return Found;
     }
 }
