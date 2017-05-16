@@ -29,7 +29,7 @@
             <b>Description:</b><asp:Label ID="Description" runat="server" Text="Label4"></asp:Label>
             <br />
             <div class="text-center">
-            <iframe width="540" height="405" src="<%=VideoSource %>"></iframe>
+                <iframe width="540" height="405" src="<%=VideoSource %>"></iframe>
             </div>
         </div>
 
@@ -38,12 +38,18 @@
         <br />
         <%=RatingMsg %>
         <form runat="server" class="text-center" id="rating">
-            <label class="active">Rate This Movie:</label>
-            <asp:Button ID="rating1" CssClass="btn btn-info" runat="server" Text="1" OnClick="rating1_Click" />
+            <label class="active text-center">Write A Review:</label>
+            <asp:TextBox ID="review" TextMode="MultiLine" runat="server"></asp:TextBox>
+            <br />
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="review" ErrorMessage="Can't Be Empty!" ForeColor="#FF3300"></asp:RequiredFieldValidator>
+            <br />
+            <label class="active">And Rate This Movie:</label>
+            <asp:Button  ID="rating1" CssClass="btn btn-info" runat="server" Text="1" OnClick="rating1_Click" />
             <asp:Button ID="rating2" CssClass="btn btn-info" runat="server" Text="2" OnClick="rating2_Click" />
             <asp:Button ID="rating3" CssClass="btn btn-info" runat="server" Text="3" OnClick="rating3_Click" />
             <asp:Button ID="rating4" CssClass="btn btn-info" runat="server" Text="4" OnClick="rating4_Click" />
             <asp:Button ID="rating5" CssClass="btn btn-info" runat="server" Text="5" OnClick="rating5_Click" />
+            <br />
         </form>
     </div>
 

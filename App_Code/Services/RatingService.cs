@@ -18,7 +18,7 @@ public class RatingService
         myConn = new OleDbConnection(Connect.getConnectionString());
     }
 
-    public void InsertUserRateMovie(string username, int movieID, int rating)
+    public void InsertUserRateMovie(string username, int movieID, int rating,DateTime date,string review)
     {
         OleDbCommand myCmd = new OleDbCommand("InsertRatingOfUser", myConn);
         myCmd.CommandType = CommandType.StoredProcedure;
@@ -34,6 +34,14 @@ public class RatingService
         objParam = myCmd.Parameters.Add("@rating", OleDbType.Integer);
         objParam.Direction = ParameterDirection.Input;
         objParam.Value = rating;
+
+        objParam = myCmd.Parameters.Add("@reviewDate", OleDbType.Date);
+        objParam.Direction = ParameterDirection.Input;
+        objParam.Value = date;
+
+        objParam = myCmd.Parameters.Add("@review", OleDbType.BSTR);
+        objParam.Direction = ParameterDirection.Input;
+        objParam.Value = review;
 
         try
         {
@@ -102,7 +110,37 @@ public class RatingService
         {
             myConn.Close();
         }
-        //return username != null;
         return Found;
     }
+
+    public DataSet GetAllReviewsOfUser(string username)
+    {
+        bool Found;
+        OleDbCommand myCmd = new OleDbCommand("GetAllReviewsOfUser", myConn);
+        myCmd.CommandType = CommandType.StoredProcedure;
+
+        objParam = myCmd.Parameters.Add("@username", OleDbType.BSTR);
+        objParam.Direction = ParameterDirection.Input;
+        objParam.Value = username;
+
+        OleDbDataAdapter adapter = new OleDbDataAdapter();
+        adapter.SelectCommand = myCmd;
+
+        DataSet RatingTable = new DataSet();
+
+        try
+        {
+            adapter.Fill(RatingTable, "Rating");
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        finally
+        {
+            myConn.Close();
+        }
+        return RatingTable;
+    }
+
 }

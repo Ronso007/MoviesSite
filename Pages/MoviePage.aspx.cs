@@ -78,46 +78,64 @@ public partial class Pages_MoviePage : System.Web.UI.Page
 
     protected void rating1_Click(object sender, EventArgs e)
     {
-        MoviesService movieService = new MoviesService();
-
-        RatingService ratingService = new RatingService();
-        ratingService.InsertUserRateMovie((string)Session["Username"], movieService.GetIDbyName(movieName), 1);
-        rating.Visible = false;
+        if (Page.IsValid)
+        {
+            MoviesService movieService = new MoviesService();
+            RatingService ratingService = new RatingService();
+            ratingService.InsertUserRateMovie((string)Session["Username"], movieService.GetIDbyName(movieName), 1, DateTime.Now, review.Text);
+            rating.Visible = false;
+        }
     }
 
     protected void rating2_Click(object sender, EventArgs e)
     {
-        MoviesService movieService = new MoviesService();
+        if (Page.IsValid)
+        {
 
-        RatingService ratingService = new RatingService();
-        ratingService.InsertUserRateMovie((string)Session["Username"], movieService.GetIDbyName(movieName), 2);
-        rating.Visible = false;
+            MoviesService movieService = new MoviesService();
+
+            RatingService ratingService = new RatingService();
+            ratingService.InsertUserRateMovie((string)Session["Username"], movieService.GetIDbyName(movieName), 2, DateTime.Now, review.Text);
+            rating.Visible = false;
+        }
     }
 
     protected void rating3_Click(object sender, EventArgs e)
     {
-        MoviesService movieService = new MoviesService();
+        if (Page.IsValid)
+        {
 
-        RatingService ratingService = new RatingService();
-        ratingService.InsertUserRateMovie((string)Session["Username"], movieService.GetIDbyName(movieName), 3);
-        rating.Visible = false;
+            MoviesService movieService = new MoviesService();
+
+            RatingService ratingService = new RatingService();
+            ratingService.InsertUserRateMovie((string)Session["Username"], movieService.GetIDbyName(movieName), 3, DateTime.Now, review.Text);
+            rating.Visible = false;
+        }
     }
 
     protected void rating4_Click(object sender, EventArgs e)
     {
-        MoviesService movieService = new MoviesService();
+        if (Page.IsValid)
+        {
 
-        RatingService ratingService = new RatingService();
-        ratingService.InsertUserRateMovie((string)Session["Username"], movieService.GetIDbyName(movieName), 4);
-        rating.Visible = false;
+            MoviesService movieService = new MoviesService();
+
+            RatingService ratingService = new RatingService();
+            ratingService.InsertUserRateMovie((string)Session["Username"], movieService.GetIDbyName(movieName), 4, DateTime.Now, review.Text);
+            rating.Visible = false;
+        }
     }
 
     protected void rating5_Click(object sender, EventArgs e)
     {
-        MoviesService movieService = new MoviesService();
+        if (Page.IsValid)
+        {
 
-        RatingService ratingService = new RatingService();
-        ratingService.InsertUserRateMovie((string)Session["Username"], movieService.GetIDbyName(movieName), 5);
-        rating.Visible = false;
+            MoviesService movieService = new MoviesService();
+
+            RatingService ratingService = new RatingService();
+            ratingService.InsertUserRateMovie((string)Session["Username"], movieService.GetIDbyName(movieName), 5, DateTime.Now, review.Text);
+            rating.Visible = false;
+        }
     }
 }

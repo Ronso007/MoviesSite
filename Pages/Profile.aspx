@@ -13,6 +13,7 @@
         <div class="panel-heading">
             <div class="panel-title text-center">
                 <h1 class="title">Profile</h1>
+                <h3 class="pull-left"><a href="UserReviews.aspx" ">Go to Your Reviews</a></h3>
                 <hr />
             </div>
         </div>
