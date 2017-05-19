@@ -26,7 +26,13 @@ public partial class MasterPage : System.Web.UI.MasterPage
             if (!(bool)Session["Admin"])
             {
                 navbarRight = "<li><a>Hello " + (string)Session["User"] + "!</a></li>";
-                navbarRight += "<li><a href='Profile.aspx'><span class='glyphicon glyphicon-user'></span> Profile</a></li>";
+                navbarRight += "<li class='dropdown'>";
+                navbarRight += "<a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'><span class='glyphicon glyphicon-option-vertical'></span>Control <span class='caret'></span></a>";
+                navbarRight += "<ul class='dropdown-menu'>";
+                navbarRight += "<li><a href='Profile.aspx'><span class='glyphicon glyphicon-user'></span> Myself</a></li>";
+                navbarRight += "<li><a href='UserReviews.aspx'><span class='glyphicon glyphicon-pencil'></span> Reviews</a></li>";
+                navbarRight += "</ul>";
+                navbarRight += "</li>";
                 navbarRight += "<li><a href='Logout.aspx' ><span class='glyphicon glyphicon-log-out'></span> Logout</a></li>";
 
 
@@ -34,8 +40,14 @@ public partial class MasterPage : System.Web.UI.MasterPage
             else
             {
                 navbarRight = "<li><a>Hello " + (string)Session["User"] + "!</a></li>";
-                navbarRight += "<li><a href='Profile.aspx'><span class='glyphicon glyphicon-user'></span> Profile</a></li>";
-                navbarRight += "<li><a href='Controlpanel.aspx'><span class='glyphicon glyphicon-edit'></span> Panel</a></li>";
+                navbarRight += "<li class='dropdown'>";
+                navbarRight += "<a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'><span class='glyphicon glyphicon-option-vertical'></span>Control <span class='caret'></span></a>";
+                navbarRight += "<ul class='dropdown-menu'>";
+                navbarRight += "<li><a href='Profile.aspx'><span class='glyphicon glyphicon-user'></span> Myself</a></li>";
+                navbarRight += "<li><a href='UserReviews.aspx'><span class='glyphicon glyphicon-pencil'></span> Reviews</a></li>";
+                navbarRight += "<li><a href='Controlpanel.aspx'><span class='glyphicon glyphicon-edit'></span>Control Panel</a></li>";
+                navbarRight += "</ul>";
+                navbarRight += "</li>";
                 navbarRight += "<li><a href='Logout.aspx' ><span class='glyphicon glyphicon-log-out'></span> Logout</a></li>";
             }
                 

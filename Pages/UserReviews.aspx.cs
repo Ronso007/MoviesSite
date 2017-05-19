@@ -69,6 +69,9 @@ public partial class Pages_UserReviews : System.Web.UI.Page
             int rating = int.Parse(((TextBox)(GridViewReviews.Rows[e.RowIndex].Cells[2].Controls[0])).Text);
             string review = ((TextBox)(GridViewReviews.Rows[e.RowIndex].Cells[3].Controls[0])).Text;
 
+            int beforeRating = ratingService.GetSpecificRating(username, movieID);
+            movies.UpdateMovieRating(rating - beforeRating, movieID,false);
+
             ratingService.UpdateRating(username, movieID, rating, review);
             GridViewReviews.EditIndex = -1;
             PopulateGrid();

@@ -203,4 +203,45 @@ public class RatingService
         return RatingTable;
     }
 
+    public int GetSpecificRating(string username,int movieID)
+    {
+        OleDbCommand myCmd = new OleDbCommand("GetSpecificRating", myConn);
+        myCmd.CommandType = CommandType.StoredProcedure;
+
+        objParam = myCmd.Parameters.Add("@username", OleDbType.BSTR);
+        objParam.Direction = ParameterDirection.Input;
+        objParam.Value = username;
+
+        objParam = myCmd.Parameters.Add("@movieID", OleDbType.Integer);
+        objParam.Direction = ParameterDirection.Input;
+        objParam.Value = movieID;
+
+        int rating;
+        try
+        {
+            myConn.Open();
+            OleDbDataReader DataReader = myCmd.ExecuteReader();
+
+
+            if (DataReader.Read())
+            {
+                rating = (int)DataReader["Rating"];
+            }
+            else
+            {
+                rating = -1;
+            }
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        finally
+        {
+            myConn.Close();
+        }
+        return rating;
+
+    }
+
 }

@@ -177,14 +177,23 @@ public class MoviesService
         return MoviesTable;
     }
 
-    public void UpdateMovieRating(int rating,int movieID)
+    public void UpdateMovieRating(int rating,int movieID,bool addUser)
     {
         OleDbCommand myCmd = new OleDbCommand("UpdateMovieRating", myConn);
         myCmd.CommandType = CommandType.StoredProcedure;
 
+        
+
         objParam = myCmd.Parameters.Add("@rating", OleDbType.Integer);
         objParam.Direction = ParameterDirection.Input;
         objParam.Value = rating;
+
+        objParam = myCmd.Parameters.Add("@addUser", OleDbType.Integer);
+        objParam.Direction = ParameterDirection.Input;
+        if (addUser)
+            objParam.Value = 1;
+        else
+            objParam.Value = 0;
 
         objParam = myCmd.Parameters.Add("@movieID", OleDbType.Integer);
         objParam.Direction = ParameterDirection.Input;

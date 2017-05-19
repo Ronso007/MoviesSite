@@ -76,7 +76,7 @@ public partial class Pages_MoviePage : System.Web.UI.Page
         if (movie.NumberOfUsers != 0)
         {
 
-            CalcRating.Text = (movie.TotalRating / movie.NumberOfUsers).ToString();
+            CalcRating.Text = (movie.TotalRating / (double)movie.NumberOfUsers).ToString();
         }
         else
         {
@@ -123,7 +123,7 @@ public partial class Pages_MoviePage : System.Web.UI.Page
             RatingService ratingService = new RatingService();
             int id = movieService.GetIDbyName(movieName);
             ratingService.InsertUserRateMovie((string)Session["Username"], id, 1, DateTime.Now, review.Text);
-            movieService.UpdateMovieRating(1, id);
+            movieService.UpdateMovieRating(1, id,true);
             rating.Visible = false;
         }
     }
@@ -137,7 +137,7 @@ public partial class Pages_MoviePage : System.Web.UI.Page
             RatingService ratingService = new RatingService();
             int id = movieService.GetIDbyName(movieName);
             ratingService.InsertUserRateMovie((string)Session["Username"], id, 2, DateTime.Now, review.Text);
-            movieService.UpdateMovieRating(2, id);
+            movieService.UpdateMovieRating(2, id, true);
             rating.Visible = false;
         }
     }
@@ -151,7 +151,7 @@ public partial class Pages_MoviePage : System.Web.UI.Page
             RatingService ratingService = new RatingService();
             int id = movieService.GetIDbyName(movieName);
             ratingService.InsertUserRateMovie((string)Session["Username"], id, 3, DateTime.Now, review.Text);
-            movieService.UpdateMovieRating(3, id);
+            movieService.UpdateMovieRating(3, id, true);
             rating.Visible = false;
         }
     }
@@ -165,7 +165,7 @@ public partial class Pages_MoviePage : System.Web.UI.Page
             RatingService ratingService = new RatingService();
             int id = movieService.GetIDbyName(movieName);
             ratingService.InsertUserRateMovie((string)Session["Username"], id, 4, DateTime.Now, review.Text);
-            movieService.UpdateMovieRating(4, id);
+            movieService.UpdateMovieRating(4, id, true);
             rating.Visible = false;
         }
     }
@@ -179,7 +179,7 @@ public partial class Pages_MoviePage : System.Web.UI.Page
             RatingService ratingService = new RatingService();
             int id = movieService.GetIDbyName(movieName);
             ratingService.InsertUserRateMovie((string)Session["Username"], id, 5, DateTime.Now, review.Text);
-            movieService.UpdateMovieRating(5, id);
+            movieService.UpdateMovieRating(5, id, true);
             rating.Visible = false;
         }
     }
