@@ -26,4 +26,5 @@ public class ActorsDetails
             name = value;
         }
     }
+
 }
