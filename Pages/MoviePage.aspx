@@ -28,6 +28,7 @@
                         <br />
             <b>Description:</b><asp:Label ID="Description" runat="server" Text="Label4"></asp:Label>
             <br />
+            <b>Rating:</b><asp:Label ID="CalcRating" runat="server" Text="Label5"></asp:Label>
             <div class="text-center">
                 <iframe width="540" height="405" src="<%=VideoSource %>"></iframe>
             </div>

@@ -135,7 +135,8 @@ public class MoviesService
                 movie.Duration = (string)DataReader["Duration"];
                 movie.ImgURL = (string)DataReader["image"];
                 movie.TrailerURL = (string)DataReader["Trailer"];
-
+                movie.TotalRating = (int)DataReader["TotalRating"];
+                movie.NumberOfUsers = (int)DataReader["NumberOfUsers"];
             }
             else
             {
@@ -176,5 +177,33 @@ public class MoviesService
         return MoviesTable;
     }
 
+    public void UpdateMovieRating(int rating,int movieID)
+    {
+        OleDbCommand myCmd = new OleDbCommand("UpdateMovieRating", myConn);
+        myCmd.CommandType = CommandType.StoredProcedure;
 
+        objParam = myCmd.Parameters.Add("@rating", OleDbType.Integer);
+        objParam.Direction = ParameterDirection.Input;
+        objParam.Value = rating;
+
+        objParam = myCmd.Parameters.Add("@movieID", OleDbType.Integer);
+        objParam.Direction = ParameterDirection.Input;
+        objParam.Value = movieID;
+
+        try
+        {
+            myConn.Open();
+            myCmd.ExecuteNonQuery();
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        finally
+        {
+            myConn.Close();
+        }
+
+
+    }
 }

@@ -15,6 +15,8 @@ public class MoviesDetails
     private string duration;
     private string imgURL;
     private string trailerURL;
+    private int totalRating;
+    private int numberOfUsers;
 
     public string MovieName
     {
@@ -107,4 +109,27 @@ public class MoviesDetails
         }
     }
 
+    public int TotalRating
+    {
+        get
+        {
+            return totalRating;
+        }
+        set
+        {
+            totalRating = value;
+        }
+    }
+
+    public int NumberOfUsers
+    {
+        get
+        {
+            return numberOfUsers;
+        }
+        set
+        {
+            numberOfUsers = value;
+        }
+    }
 }
