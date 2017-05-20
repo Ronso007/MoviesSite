@@ -26,7 +26,6 @@ public partial class Pages_Movies : System.Web.UI.Page
     {
         DataSet Movies = new DataSet();
 
-        // WebServiceMovies123.MoviesWebService test = new WebServiceMovies123.MoviesWebService();
         MoviesService movies = new MoviesService();
         return movies.GetAllMovies();
     }
@@ -43,4 +42,18 @@ public partial class Pages_Movies : System.Web.UI.Page
             Response.Redirect("MoviePage.aspx?getMovieName=" + ((Label)(e.Item.FindControl("movieName"))).Text);
         }
     }
+
+    protected void submitSort_Click(object sender, EventArgs e)
+    {
+        string sortExpression = RatingExpression.SelectedValue;
+        int ratingExpression = int.Parse(RatingDropDown.SelectedValue);
+
+        DataSet Movies = new DataSet();
+
+        MoviesService movies = new MoviesService();
+        return movies.GetAllMovies();
+
+    }
+
+
 }

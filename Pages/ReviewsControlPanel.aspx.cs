@@ -12,7 +12,7 @@ using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using System.Web.Services;
 
-public partial class Pages_UserReviews : System.Web.UI.Page
+public partial class Pages_ReviewsContolPanel : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -27,8 +27,7 @@ public partial class Pages_UserReviews : System.Web.UI.Page
         DataSet reviews = new DataSet();
 
         RatingService ratingService = new RatingService();
-         reviews = ratingService.GetAllReviewsOfUser((string)Session["Username"]);
-        //reviews = ratingService.GetAllRatingOfMovie(44);
+        reviews = ratingService.GetAllRating();
         return reviews;
     }
     private void PopulateGrid()
@@ -36,6 +35,7 @@ public partial class Pages_UserReviews : System.Web.UI.Page
         GridViewReviews.DataSource = GetData();
         GridViewReviews.DataBind();
     }
+
 
 
     protected void GridViewReviews_RowEditing(object sender, GridViewEditEventArgs e)
@@ -50,28 +50,29 @@ public partial class Pages_UserReviews : System.Web.UI.Page
         PopulateGrid();
     }
 
+
     protected void GridViewReviews_RowUpdating(object sender, GridViewUpdateEventArgs e)
     {
         RatingService ratingService = new RatingService();
         MoviesService movies = new MoviesService();
         try
         {
-            string username = (string)Session["Username"];
-            int movieID = movies.GetIDbyName(GridViewReviews.Rows[e.RowIndex].Cells[0].Text);
-            int rating = int.Parse(((TextBox)(GridViewReviews.Rows[e.RowIndex].Cells[2].Controls[0])).Text);
-            string review = ((TextBox)(GridViewReviews.Rows[e.RowIndex].Cells[3].Controls[0])).Text;
+            string username = GridViewReviews.Rows[e.RowIndex].Cells[0].Text;
+            int movieID = movies.GetIDbyName(GridViewReviews.Rows[e.RowIndex].Cells[1].Text);
+            int rating = int.Parse(GridViewReviews.Rows[e.RowIndex].Cells[3].Text);
+            string review = ((TextBox)(GridViewReviews.Rows[e.RowIndex].Cells[4].Controls[0])).Text;
 
-            int beforeRating = ratingService.GetSpecificRating(username, movieID);
-            movies.UpdateMovieRating(rating - beforeRating, movieID,false);
 
             ratingService.UpdateRating(username, movieID, rating, review);
+
             GridViewReviews.EditIndex = -1;
             PopulateGrid();
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             throw ex;
         }
-        
+
+
     }
 }

@@ -46,6 +46,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
                 navbarRight += "<li><a href='Profile.aspx'><span class='glyphicon glyphicon-user'></span> Myself</a></li>";
                 navbarRight += "<li><a href='UserReviews.aspx'><span class='glyphicon glyphicon-pencil'></span> Reviews</a></li>";
                 navbarRight += "<li><a href='Controlpanel.aspx'><span class='glyphicon glyphicon-edit'></span>Control Panel</a></li>";
+                navbarRight += "<li><a href='ReviewsControlPanel.aspx'><span class='glyphicon glyphicon-edit'></span>Reviews Panel</a></li>";
                 navbarRight += "</ul>";
                 navbarRight += "</li>";
                 navbarRight += "<li><a href='Logout.aspx' ><span class='glyphicon glyphicon-log-out'></span> Logout</a></li>";

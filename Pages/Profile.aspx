@@ -10,13 +10,6 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <div class="row main">
-        <div class="panel-heading">
-            <div class="panel-title text-center">
-                <h1 class="title">Profile</h1>
-                <h3 class="pull-left"><a href="UserReviews.aspx" ">Go to Your Reviews</a></h3>
-                <hr />
-            </div>
-        </div>
         <div class="main-login main-center">
             <form class="form-horizontal" method="post" runat="server">
                 <div class="form-group">
