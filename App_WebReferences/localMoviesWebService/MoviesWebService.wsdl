@@ -19,6 +19,167 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="InsertMovie">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="movie" type="tns:MoviesDetails" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="MoviesDetails">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="MovieName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Director" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MovieGenre" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Duration" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ImgURL" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TrailerURL" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalRating" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="NumberOfUsers" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="InsertMovieResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetIDbyName">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetIDbyNameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetIDbyNameResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMovieByID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMovieByIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMovieByIDResult" type="tns:MoviesDetails" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateMovieRating">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="rating" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="movieID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="addUser" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateMovieRatingResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAllMoviesFiltered">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Expression" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Rating" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllMoviesFilteredResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllMoviesFilteredResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertActor">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="actor" type="tns:ActorsDetails" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ActorsDetails">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="InsertActorResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="ActorGetIDbyName">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ActorGetIDbyNameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ActorGetIDbyNameResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertActorInMovie">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="movieID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="actorID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertActorInMovieResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetActors">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetActorsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetActorsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ActorsInMovie">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="movieID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ActorsInMovieResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ActorsInMovieResult" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="GetAllMoviesSoapIn">
@@ -27,10 +188,110 @@
   <wsdl:message name="GetAllMoviesSoapOut">
     <wsdl:part name="parameters" element="tns:GetAllMoviesResponse" />
   </wsdl:message>
+  <wsdl:message name="InsertMovieSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertMovie" />
+  </wsdl:message>
+  <wsdl:message name="InsertMovieSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertMovieResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetIDbyNameSoapIn">
+    <wsdl:part name="parameters" element="tns:GetIDbyName" />
+  </wsdl:message>
+  <wsdl:message name="GetIDbyNameSoapOut">
+    <wsdl:part name="parameters" element="tns:GetIDbyNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMovieByIDSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMovieByID" />
+  </wsdl:message>
+  <wsdl:message name="GetMovieByIDSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMovieByIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateMovieRatingSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateMovieRating" />
+  </wsdl:message>
+  <wsdl:message name="UpdateMovieRatingSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateMovieRatingResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllMoviesFilteredSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllMoviesFiltered" />
+  </wsdl:message>
+  <wsdl:message name="GetAllMoviesFilteredSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllMoviesFilteredResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertActorSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertActor" />
+  </wsdl:message>
+  <wsdl:message name="InsertActorSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertActorResponse" />
+  </wsdl:message>
+  <wsdl:message name="ActorGetIDbyNameSoapIn">
+    <wsdl:part name="parameters" element="tns:ActorGetIDbyName" />
+  </wsdl:message>
+  <wsdl:message name="ActorGetIDbyNameSoapOut">
+    <wsdl:part name="parameters" element="tns:ActorGetIDbyNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertActorInMovieSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertActorInMovie" />
+  </wsdl:message>
+  <wsdl:message name="InsertActorInMovieSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertActorInMovieResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetActorsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetActors" />
+  </wsdl:message>
+  <wsdl:message name="GetActorsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetActorsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ActorsInMovieSoapIn">
+    <wsdl:part name="parameters" element="tns:ActorsInMovie" />
+  </wsdl:message>
+  <wsdl:message name="ActorsInMovieSoapOut">
+    <wsdl:part name="parameters" element="tns:ActorsInMovieResponse" />
+  </wsdl:message>
   <wsdl:portType name="MoviesWebServiceSoap">
     <wsdl:operation name="GetAllMovies">
       <wsdl:input message="tns:GetAllMoviesSoapIn" />
       <wsdl:output message="tns:GetAllMoviesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertMovie">
+      <wsdl:input message="tns:InsertMovieSoapIn" />
+      <wsdl:output message="tns:InsertMovieSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetIDbyName">
+      <wsdl:input message="tns:GetIDbyNameSoapIn" />
+      <wsdl:output message="tns:GetIDbyNameSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMovieByID">
+      <wsdl:input message="tns:GetMovieByIDSoapIn" />
+      <wsdl:output message="tns:GetMovieByIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateMovieRating">
+      <wsdl:input message="tns:UpdateMovieRatingSoapIn" />
+      <wsdl:output message="tns:UpdateMovieRatingSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllMoviesFiltered">
+      <wsdl:input message="tns:GetAllMoviesFilteredSoapIn" />
+      <wsdl:output message="tns:GetAllMoviesFilteredSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertActor">
+      <wsdl:input message="tns:InsertActorSoapIn" />
+      <wsdl:output message="tns:InsertActorSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ActorGetIDbyName">
+      <wsdl:input message="tns:ActorGetIDbyNameSoapIn" />
+      <wsdl:output message="tns:ActorGetIDbyNameSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertActorInMovie">
+      <wsdl:input message="tns:InsertActorInMovieSoapIn" />
+      <wsdl:output message="tns:InsertActorInMovieSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetActors">
+      <wsdl:input message="tns:GetActorsSoapIn" />
+      <wsdl:output message="tns:GetActorsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ActorsInMovie">
+      <wsdl:input message="tns:ActorsInMovieSoapIn" />
+      <wsdl:output message="tns:ActorsInMovieSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="MoviesWebServiceSoap" type="tns:MoviesWebServiceSoap">
@@ -44,11 +305,191 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="InsertMovie">
+      <soap:operation soapAction="http://tempuri.org/InsertMovie" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetIDbyName">
+      <soap:operation soapAction="http://tempuri.org/GetIDbyName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMovieByID">
+      <soap:operation soapAction="http://tempuri.org/GetMovieByID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateMovieRating">
+      <soap:operation soapAction="http://tempuri.org/UpdateMovieRating" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllMoviesFiltered">
+      <soap:operation soapAction="http://tempuri.org/GetAllMoviesFiltered" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertActor">
+      <soap:operation soapAction="http://tempuri.org/InsertActor" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActorGetIDbyName">
+      <soap:operation soapAction="http://tempuri.org/ActorGetIDbyName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertActorInMovie">
+      <soap:operation soapAction="http://tempuri.org/InsertActorInMovie" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetActors">
+      <soap:operation soapAction="http://tempuri.org/GetActors" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActorsInMovie">
+      <soap:operation soapAction="http://tempuri.org/ActorsInMovie" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="MoviesWebServiceSoap12" type="tns:MoviesWebServiceSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="GetAllMovies">
       <soap12:operation soapAction="http://tempuri.org/GetAllMovies" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertMovie">
+      <soap12:operation soapAction="http://tempuri.org/InsertMovie" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetIDbyName">
+      <soap12:operation soapAction="http://tempuri.org/GetIDbyName" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMovieByID">
+      <soap12:operation soapAction="http://tempuri.org/GetMovieByID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateMovieRating">
+      <soap12:operation soapAction="http://tempuri.org/UpdateMovieRating" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllMoviesFiltered">
+      <soap12:operation soapAction="http://tempuri.org/GetAllMoviesFiltered" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertActor">
+      <soap12:operation soapAction="http://tempuri.org/InsertActor" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActorGetIDbyName">
+      <soap12:operation soapAction="http://tempuri.org/ActorGetIDbyName" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertActorInMovie">
+      <soap12:operation soapAction="http://tempuri.org/InsertActorInMovie" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetActors">
+      <soap12:operation soapAction="http://tempuri.org/GetActors" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActorsInMovie">
+      <soap12:operation soapAction="http://tempuri.org/ActorsInMovie" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

@@ -59,4 +59,38 @@ public class MoviesWebService : System.Web.Services.WebService
         MoviesService mov = new MoviesService();
         return mov.GetAllMoviesFiltered(Expression,Rating);
     }
+    [WebMethod]
+    public void InsertActor(ActorsDetails actor)
+    {
+        ActorsService act = new ActorsService();
+        act.InsertActor(actor);
+    }
+
+    [WebMethod]
+    public int ActorGetIDbyName(string name)
+    {
+        ActorsService act = new ActorsService();
+        return act.GetIDbyName(name);
+    }
+
+    [WebMethod]
+    public void InsertActorInMovie(int movieID, int actorID)
+    {
+        ActorsService act = new ActorsService();
+        act.InsertActorInMovie(movieID,actorID);
+    }
+
+    [WebMethod]
+    public DataSet GetActors()
+    {
+        ActorsService act = new ActorsService();
+        return act.GetActors();
+    }
+
+    [WebMethod]
+    public string[] ActorsInMovie(int movieID)
+    {
+        ActorsService act = new ActorsService();
+        return act.ActorsInMovie(movieID);
+    }
 }

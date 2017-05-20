@@ -8,11 +8,10 @@ using System.Web;
 /// </summary>
 public class ActorsDetails
 {
-        private string name;
+    private string name;
 
-    public ActorsDetails(string Name)
+    public ActorsDetails()
     {
-        name = Name;
     }
     public string Name
     {

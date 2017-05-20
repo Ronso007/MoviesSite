@@ -20,10 +20,7 @@ public partial class Pages_AddMovie : System.Web.UI.Page
 
     protected void submit_Click(object sender, EventArgs e)
     {
-        MoviesDetails movie = new MoviesDetails();
-        MoviesService movieService = new MoviesService();
-
-        ActorsService actorService = new ActorsService();
+        localMoviesWebService.MoviesDetails movie = new localMoviesWebService.MoviesDetails();
 
         string MovieName = movieName.Text;
         string Director = director.Text;
@@ -44,27 +41,28 @@ public partial class Pages_AddMovie : System.Web.UI.Page
 
         localMoviesWebService.MoviesWebService moviesWeb = new localMoviesWebService.MoviesWebService();
 
-        
+        moviesWeb.InsertMovie(movie);
 
         string[] arrActorString = actorsList.Split(','); //Split Actors By ','
-        ActorsDetails[] arrActors = new ActorsDetails[arrActorString.Length];
+        localMoviesWebService.ActorsDetails[] arrActors = new localMoviesWebService.ActorsDetails[arrActorString.Length];
         for (int i = 0;i<arrActors.Length;i++)
         {
-            arrActors[i] = new ActorsDetails(arrActorString[i]);
+            arrActors[i] = new localMoviesWebService.ActorsDetails();
+            arrActors[i].Name = arrActorString[i];
             arrActors[i].Name.Trim();
 
-            if (actorService.GetIDbyName(arrActors[i].Name) != -1)
+            if (moviesWeb.ActorGetIDbyName(arrActors[i].Name) == -1)
             {
-                actorService.InsertActor(arrActors[i]);
+                moviesWeb.InsertActor(arrActors[i]);
             }
         }
 
-        int movieID = movieService.GetIDbyName(movie.MovieName);
-        int firstActorID = actorService.GetIDbyName(arrActors[0].Name);
+        int movieID = moviesWeb.GetIDbyName(movie.MovieName);
+        int firstActorID = moviesWeb.ActorGetIDbyName(arrActors[0].Name);
 
         for(int i = 0;i<arrActors.Length;i++)
         {
-            actorService.InsertActorInMovie(movieID, firstActorID + i);
+            moviesWeb.InsertActorInMovie(movieID, firstActorID + i);
         }
         userMsg.Attributes.Add("class", "alert alert-success");
         msg = "You Added A Movie";
