@@ -50,10 +50,10 @@ public partial class Pages_Movies : System.Web.UI.Page
         int ratingExpression = int.Parse(RatingDropDown.SelectedValue);
 
         DataSet Movies = new DataSet();
+        localMoviesWebService.MoviesWebService moviesWeb = new localMoviesWebService.MoviesWebService();
 
-        MoviesService movies = new MoviesService();
 
-            GridViewMovies.DataSource = movies.GetAllMoviesFiltered(sortExpression,ratingExpression);
+        GridViewMovies.DataSource = moviesWeb.GetAllMoviesFiltered(sortExpression, ratingExpression);
         
         GridViewMovies.DataBind();
     }

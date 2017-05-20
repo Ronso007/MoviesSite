@@ -53,16 +53,18 @@ public partial class Pages_UserReviews : System.Web.UI.Page
     protected void GridViewReviews_RowUpdating(object sender, GridViewUpdateEventArgs e)
     {
         RatingService ratingService = new RatingService();
-        MoviesService movies = new MoviesService();
+        localMoviesWebService.MoviesWebService moviesWeb = new localMoviesWebService.MoviesWebService();
+
+
         try
         {
             string username = (string)Session["Username"];
-            int movieID = movies.GetIDbyName(GridViewReviews.Rows[e.RowIndex].Cells[0].Text);
+            int movieID = moviesWeb.GetIDbyName(GridViewReviews.Rows[e.RowIndex].Cells[0].Text);
             int rating = int.Parse(((TextBox)(GridViewReviews.Rows[e.RowIndex].Cells[2].Controls[0])).Text);
             string review = ((TextBox)(GridViewReviews.Rows[e.RowIndex].Cells[3].Controls[0])).Text;
 
             int beforeRating = ratingService.GetSpecificRating(username, movieID);
-            movies.UpdateMovieRating(rating - beforeRating, movieID,0);
+            moviesWeb.UpdateMovieRating(rating - beforeRating, movieID,0);
 
             ratingService.UpdateRating(username, movieID, rating, review);
             GridViewReviews.EditIndex = -1;

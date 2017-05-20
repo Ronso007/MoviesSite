@@ -34,10 +34,11 @@ public partial class Pages_MoviePage : System.Web.UI.Page
         {
             MoviesService movieService = new MoviesService();
             ActorsService actorService = new ActorsService();
+            localMoviesWebService.MoviesWebService moviesWeb = new localMoviesWebService.MoviesWebService();
 
-            movieID = movieService.GetIDbyName(movieName);
-            actors = actorService.ActorsInMovie(movieID);
-            PopulatePage(movieService.GetMovieByID(movieID));
+            movieID = moviesWeb.GetIDbyName(movieName);
+            actors = moviesWeb.ActorsInMovie(movieID);
+            PopulatePage(moviesWeb.GetMovieByID(movieID));
         }
         PopulateRating();
 
@@ -62,7 +63,7 @@ public partial class Pages_MoviePage : System.Web.UI.Page
         }
     }
 
-    private void PopulatePage(MoviesDetails movie)
+    private void PopulatePage(localMoviesWebService.MoviesDetails movie)
     {
         MovieName.Text = movie.MovieName;
         movieImage.ImageUrl = movie.ImgURL;
@@ -119,17 +120,17 @@ public partial class Pages_MoviePage : System.Web.UI.Page
     {
         if (Page.IsValid)
         {
-            MoviesService movieService = new MoviesService();
+            localMoviesWebService.MoviesWebService moviesWeb = new localMoviesWebService.MoviesWebService();
             RatingService ratingService = new RatingService();
-            int id = movieService.GetIDbyName(movieName);
+            int id = moviesWeb.GetIDbyName(movieName);
             ratingService.InsertUserRateMovie((string)Session["Username"], id, 1, DateTime.Now, review.Text);
 
-            if (movieService.GetMovieByID(id).NumberOfUsers == -1)
+            if (moviesWeb.GetMovieByID(id).NumberOfUsers == -1)
             {
-                movieService.UpdateMovieRating(1, id, 2);
+                moviesWeb.UpdateMovieRating(1, id, 2);
             }
             else
-                movieService.UpdateMovieRating(1, id, 1);
+                moviesWeb.UpdateMovieRating(1, id, 1);
 
             rating.Visible = false;
         }
@@ -140,17 +141,17 @@ public partial class Pages_MoviePage : System.Web.UI.Page
         if (Page.IsValid)
         {
 
-            MoviesService movieService = new MoviesService();
+            localMoviesWebService.MoviesWebService moviesWeb = new localMoviesWebService.MoviesWebService();
             RatingService ratingService = new RatingService();
-            int id = movieService.GetIDbyName(movieName);
+            int id = moviesWeb.GetIDbyName(movieName);
             ratingService.InsertUserRateMovie((string)Session["Username"], id, 2, DateTime.Now, review.Text);
 
-            if (movieService.GetMovieByID(id).NumberOfUsers == -1)
+            if (moviesWeb.GetMovieByID(id).NumberOfUsers == -1)
             {
-                movieService.UpdateMovieRating(2, id, 2);
+                moviesWeb.UpdateMovieRating(2, id, 2);
             }
             else
-                movieService.UpdateMovieRating(2, id, 1);
+                moviesWeb.UpdateMovieRating(2, id, 1);
 
 
             rating.Visible = false;
@@ -162,16 +163,16 @@ public partial class Pages_MoviePage : System.Web.UI.Page
         if (Page.IsValid)
         {
 
-            MoviesService movieService = new MoviesService();
+            localMoviesWebService.MoviesWebService moviesWeb = new localMoviesWebService.MoviesWebService();
             RatingService ratingService = new RatingService();
-            int id = movieService.GetIDbyName(movieName);
+            int id = moviesWeb.GetIDbyName(movieName);
             ratingService.InsertUserRateMovie((string)Session["Username"], id, 3, DateTime.Now, review.Text);
-            if (movieService.GetMovieByID(id).NumberOfUsers == -1)
+            if (moviesWeb.GetMovieByID(id).NumberOfUsers == -1)
             {
-                movieService.UpdateMovieRating(3, id, 2);
+                moviesWeb.UpdateMovieRating(3, id, 2);
             }
             else
-                movieService.UpdateMovieRating(3, id, 1);
+                moviesWeb.UpdateMovieRating(3, id, 1);
 
             rating.Visible = false;
         }
@@ -182,16 +183,16 @@ public partial class Pages_MoviePage : System.Web.UI.Page
         if (Page.IsValid)
         {
 
-            MoviesService movieService = new MoviesService();
+            localMoviesWebService.MoviesWebService moviesWeb = new localMoviesWebService.MoviesWebService();
             RatingService ratingService = new RatingService();
-            int id = movieService.GetIDbyName(movieName);
+            int id = moviesWeb.GetIDbyName(movieName);
             ratingService.InsertUserRateMovie((string)Session["Username"], id, 4, DateTime.Now, review.Text);
-            if (movieService.GetMovieByID(id).NumberOfUsers == -1)
+            if (moviesWeb.GetMovieByID(id).NumberOfUsers == -1)
             {
-                movieService.UpdateMovieRating(4, id, 2);
+                moviesWeb.UpdateMovieRating(4, id, 2);
             }
             else
-                movieService.UpdateMovieRating(4, id, 1);
+                moviesWeb.UpdateMovieRating(4, id, 1);
 
             rating.Visible = false;
         }
@@ -202,16 +203,16 @@ public partial class Pages_MoviePage : System.Web.UI.Page
         if (Page.IsValid)
         {
 
-            MoviesService movieService = new MoviesService();
+            localMoviesWebService.MoviesWebService moviesWeb = new localMoviesWebService.MoviesWebService();
             RatingService ratingService = new RatingService();
-            int id = movieService.GetIDbyName(movieName);
+            int id = moviesWeb.GetIDbyName(movieName);
             ratingService.InsertUserRateMovie((string)Session["Username"], id, 5, DateTime.Now, review.Text);
-            if (movieService.GetMovieByID(id).NumberOfUsers == -1)
+            if (moviesWeb.GetMovieByID(id).NumberOfUsers == -1)
             {
-                movieService.UpdateMovieRating(5, id, 2);
+                moviesWeb.UpdateMovieRating(5, id, 2);
             }
             else
-                movieService.UpdateMovieRating(5, id, 1);
+                moviesWeb.UpdateMovieRating(5, id, 1);
 
             rating.Visible = false;
         }

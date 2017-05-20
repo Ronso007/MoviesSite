@@ -54,11 +54,12 @@ public partial class Pages_ReviewsContolPanel : System.Web.UI.Page
     protected void GridViewReviews_RowUpdating(object sender, GridViewUpdateEventArgs e)
     {
         RatingService ratingService = new RatingService();
-        MoviesService movies = new MoviesService();
+        localMoviesWebService.MoviesWebService moviesWeb = new localMoviesWebService.MoviesWebService();
+
         try
         {
             string username = GridViewReviews.Rows[e.RowIndex].Cells[0].Text;
-            int movieID = movies.GetIDbyName(GridViewReviews.Rows[e.RowIndex].Cells[1].Text);
+            int movieID = moviesWeb.GetIDbyName(GridViewReviews.Rows[e.RowIndex].Cells[1].Text);
             int rating = int.Parse(GridViewReviews.Rows[e.RowIndex].Cells[3].Text);
             string review = ((TextBox)(GridViewReviews.Rows[e.RowIndex].Cells[4].Controls[0])).Text;
 
