@@ -17,8 +17,6 @@ public class MoviesWebService : System.Web.Services.WebService
     public MoviesWebService()
     {
 
-        //Uncomment the following line if using designed components 
-        //InitializeComponent(); 
     }
 
     [WebMethod]
@@ -28,5 +26,37 @@ public class MoviesWebService : System.Web.Services.WebService
         return mov.GetAllMovies();
     }
 
+    [WebMethod]
+    public void InsertMovie(MoviesDetails movie)
+    {
+        MoviesService mov = new MoviesService();
+        mov.InsertMovie(movie);
+    }
+    [WebMethod]
+    public int GetIDbyName(string name)
+    {
+        MoviesService mov = new MoviesService();
+        return mov.GetIDbyName(name);
+    }
 
+    [WebMethod]
+    public MoviesDetails GetMovieByID(int id)
+    {
+        MoviesService mov = new MoviesService();
+        return mov.GetMovieByID(id);
+    }
+
+    [WebMethod]
+    public void UpdateMovieRating(int rating, int movieID, int addUser)
+    {
+        MoviesService mov = new MoviesService();
+        mov.UpdateMovieRating(rating,movieID,addUser);
+    }
+
+    [WebMethod]
+    public DataSet GetAllMoviesFiltered(int Expression, int Rating)
+    {
+        MoviesService mov = new MoviesService();
+        return mov.GetAllMoviesFiltered(Expression,Rating);
+    }
 }

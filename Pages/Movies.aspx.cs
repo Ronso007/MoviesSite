@@ -26,7 +26,8 @@ public partial class Pages_Movies : System.Web.UI.Page
     {
         DataSet Movies = new DataSet();
 
-        MoviesService movies = new MoviesService();
+        localMoviesWebService.MoviesWebService movies = new localMoviesWebService.MoviesWebService();
+        
         return movies.GetAllMovies();
     }
     private void PopulateGrid()

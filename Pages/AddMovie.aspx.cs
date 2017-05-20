@@ -42,7 +42,9 @@ public partial class Pages_AddMovie : System.Web.UI.Page
         movie.ImgURL = Image;
         movie.TrailerURL = Trailer;
 
-        movieService.InsertMovie(movie);
+        localMoviesWebService.MoviesWebService moviesWeb = new localMoviesWebService.MoviesWebService();
+
+        
 
         string[] arrActorString = actorsList.Split(','); //Split Actors By ','
         ActorsDetails[] arrActors = new ActorsDetails[arrActorString.Length];
