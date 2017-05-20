@@ -177,7 +177,7 @@ public class MoviesService
         return MoviesTable;
     }
 
-    public void UpdateMovieRating(int rating,int movieID,bool addUser)
+    public void UpdateMovieRating(int rating,int movieID,int addUser)
     {
         OleDbCommand myCmd = new OleDbCommand("UpdateMovieRating", myConn);
         myCmd.CommandType = CommandType.StoredProcedure;
@@ -190,10 +190,8 @@ public class MoviesService
 
         objParam = myCmd.Parameters.Add("@addUser", OleDbType.Integer);
         objParam.Direction = ParameterDirection.Input;
-        if (addUser)
-            objParam.Value = 1;
-        else
-            objParam.Value = 0;
+        objParam.Value = addUser;
+
 
         objParam = myCmd.Parameters.Add("@movieID", OleDbType.Integer);
         objParam.Direction = ParameterDirection.Input;
@@ -213,6 +211,42 @@ public class MoviesService
             myConn.Close();
         }
 
+
+    }
+
+    public DataSet GetAllMoviesFiltered(int Expression,int Rating)
+    {
+        string sqlS = "";
+
+        sqlS = "SELECT * FROM Movies WHERE (TotalRating/NumberOfUsers) ";
+        if(Expression == 0)
+        {
+            sqlS += ">";
+        }
+        else
+            sqlS += ">=";
+        sqlS += "" + Rating +";";
+        
+
+        OleDbDataAdapter adapter = new OleDbDataAdapter(sqlS,myConn);
+
+        DataSet MoviesTable = new DataSet();
+
+        try
+        {
+            myConn.Open();
+            adapter.Fill(MoviesTable, "Movies");
+            MoviesTable.Tables["Movies"].PrimaryKey = new DataColumn[] { MoviesTable.Tables["Movies"].Columns["MovieID"] };
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        finally
+        {
+            myConn.Close();
+        }
+        return MoviesTable;
 
     }
 }

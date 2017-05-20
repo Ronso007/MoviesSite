@@ -45,15 +45,15 @@ public partial class Pages_Movies : System.Web.UI.Page
 
     protected void submitSort_Click(object sender, EventArgs e)
     {
-        string sortExpression = RatingExpression.SelectedValue;
+        int sortExpression = int.Parse(RatingExpression.SelectedValue);
         int ratingExpression = int.Parse(RatingDropDown.SelectedValue);
 
         DataSet Movies = new DataSet();
 
         MoviesService movies = new MoviesService();
-        return movies.GetAllMovies();
 
+            GridViewMovies.DataSource = movies.GetAllMoviesFiltered(sortExpression,ratingExpression);
+        
+        GridViewMovies.DataBind();
     }
-
-
 }
