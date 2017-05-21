@@ -180,6 +180,27 @@
           <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
         </s:sequence>
       </s:complexType>
+      <s:element name="SearchMovie">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SearchExpression" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SearchMovieResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SearchMovieResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="GetAllMoviesSoapIn">
@@ -248,6 +269,12 @@
   <wsdl:message name="ActorsInMovieSoapOut">
     <wsdl:part name="parameters" element="tns:ActorsInMovieResponse" />
   </wsdl:message>
+  <wsdl:message name="SearchMovieSoapIn">
+    <wsdl:part name="parameters" element="tns:SearchMovie" />
+  </wsdl:message>
+  <wsdl:message name="SearchMovieSoapOut">
+    <wsdl:part name="parameters" element="tns:SearchMovieResponse" />
+  </wsdl:message>
   <wsdl:portType name="MoviesWebServiceSoap">
     <wsdl:operation name="GetAllMovies">
       <wsdl:input message="tns:GetAllMoviesSoapIn" />
@@ -292,6 +319,10 @@
     <wsdl:operation name="ActorsInMovie">
       <wsdl:input message="tns:ActorsInMovieSoapIn" />
       <wsdl:output message="tns:ActorsInMovieSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchMovie">
+      <wsdl:input message="tns:SearchMovieSoapIn" />
+      <wsdl:output message="tns:SearchMovieSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="MoviesWebServiceSoap" type="tns:MoviesWebServiceSoap">
@@ -395,6 +426,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="SearchMovie">
+      <soap:operation soapAction="http://tempuri.org/SearchMovie" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="MoviesWebServiceSoap12" type="tns:MoviesWebServiceSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -490,6 +530,15 @@
     </wsdl:operation>
     <wsdl:operation name="ActorsInMovie">
       <soap12:operation soapAction="http://tempuri.org/ActorsInMovie" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchMovie">
+      <soap12:operation soapAction="http://tempuri.org/SearchMovie" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

@@ -225,7 +225,7 @@ public class MoviesService
         }
         else
             sqlS += ">=";
-        sqlS += "" + Rating +";";
+        sqlS += "" + Rating + " ORDER BY (TotalRating/NumberOfUsers) DESC;";
         
 
         OleDbDataAdapter adapter = new OleDbDataAdapter(sqlS,myConn);
@@ -249,4 +249,34 @@ public class MoviesService
         return MoviesTable;
 
     }
+
+    public DataSet SearchMovie(string SearchExpression)
+    {
+        string sqlS = "";
+
+        sqlS = "SELECT * FROM Movies WHERE MovieName LIKE '%" + SearchExpression + "%';";
+
+
+        OleDbDataAdapter adapter = new OleDbDataAdapter(sqlS, myConn);
+
+        DataSet MoviesTable = new DataSet();
+
+        try
+        {
+            myConn.Open();
+            adapter.Fill(MoviesTable, "Movies");
+            MoviesTable.Tables["Movies"].PrimaryKey = new DataColumn[] { MoviesTable.Tables["Movies"].Columns["MovieID"] };
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        finally
+        {
+            myConn.Close();
+        }
+        return MoviesTable;
+
+    }
+
 }

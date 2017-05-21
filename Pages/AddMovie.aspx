@@ -17,7 +17,6 @@
             </div>
         </div>
         <div class="main-login main-center">
-            <form class="form-horizontal" method="post" runat="server">
 
                 <div class="form-group">
                     <label for="name" class="cols-sm-2 control-label">Movie Name</label>
@@ -119,7 +118,6 @@
                 <div class="form-group ">
                     <asp:Button OnClick="submit_Click" CssClass="btn btn-primary btn-lg btn-block login-button" ID="submit" runat="server" Text="Add Movie" />
                 </div>
-            </form>
         </div>
     </div>
 </asp:Content>

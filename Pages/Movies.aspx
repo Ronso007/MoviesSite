@@ -6,7 +6,6 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <form id="form1" runat="server">
         <div class=" jumbotron">
             <h3>Here you can see all the movies</h3>
             <p>
@@ -24,6 +23,8 @@
                                 <asp:ListItem>5</asp:ListItem>
                 </asp:DropDownList>
                 <asp:Button CssClass="btn btn-primary" ID="submitSort" runat="server" Text="Filter" OnClick="submitSort_Click" />
+                - or - <asp:Button CssClass="btn btn-primary" ID="buttonShowAll" runat="server" Text="Show All" OnClick="buttonShowAll_Click" />
+
             </p>
 
         </div>
@@ -46,6 +47,5 @@
                 </ItemTemplate>
             </asp:DataList>
         </div>
-    </form>
 </asp:Content>
 

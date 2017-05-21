@@ -93,4 +93,11 @@ public class MoviesWebService : System.Web.Services.WebService
         ActorsService act = new ActorsService();
         return act.ActorsInMovie(movieID);
     }
+    [WebMethod]
+    public DataSet SearchMovie(string SearchExpression)
+    {
+        MoviesService mov = new MoviesService();
+        return mov.SearchMovie(SearchExpression);
+    }
+
 }

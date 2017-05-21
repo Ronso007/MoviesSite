@@ -11,7 +11,6 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <div class="row main">
         <div class="main-login main-center">
-            <form class="form-horizontal" method="post" runat="server">
                 <div class="form-group">
                     <label for="username" class="cols-sm-2 control-label">Username</label>
                     <div class="cols-sm-10">
@@ -78,7 +77,6 @@
                 <div class="form-group ">
                     <asp:Button OnClick="submit_Click" CssClass="btn btn-primary btn-lg btn-block login-button" ID="submit" runat="server" Text="Register" />
                 </div>
-            </form>
         </div>
     </div>
 

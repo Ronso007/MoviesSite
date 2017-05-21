@@ -17,7 +17,19 @@ public partial class Pages_Movies : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if(!Page.IsPostBack)
+        string movieName = "";
+        if (Request.QueryString["MovieName"] != null)
+        {
+            movieName = Request.QueryString["MovieName"].ToString();
+        }
+        if(movieName != "")
+        {
+            localMoviesWebService.MoviesWebService movies = new localMoviesWebService.MoviesWebService();
+            GridViewMovies.DataSource = movies.SearchMovie(movieName);
+            GridViewMovies.DataBind();
+
+        }
+        else if (!Page.IsPostBack)
         {
             PopulateGrid();
         }
@@ -56,5 +68,10 @@ public partial class Pages_Movies : System.Web.UI.Page
         GridViewMovies.DataSource = moviesWeb.GetAllMoviesFiltered(sortExpression, ratingExpression);
         
         GridViewMovies.DataBind();
+    }
+
+    protected void buttonShowAll_Click(object sender, EventArgs e)
+    {
+        PopulateGrid();
     }
 }
