@@ -13,7 +13,7 @@ public class MoviesService
 
     public MoviesService()
     {
-        myConn = new OleDbConnection(Connect.getConnectionString());
+        myConn = new OleDbConnection(ConnectIMdb.getConnectionString());
     }
 
     public void InsertMovie(MoviesDetails movie)

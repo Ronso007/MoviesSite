@@ -15,7 +15,7 @@ public class ActorsService
 
     public ActorsService()
     {
-        myConn = new OleDbConnection(Connect.getConnectionString());
+        myConn = new OleDbConnection(ConnectIMdb.getConnectionString());
 
     }
 
